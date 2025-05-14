@@ -4,6 +4,7 @@
 #include "main.h"
 #include <list>
 #include <string>
+#include "../lib/STM32RTC-1.7.0/src/STM32RTC.h"
 
 #define SS_PIN 10
 #define RST_PIN 9
@@ -14,6 +15,21 @@ std::list<User> users;
 unsigned long RFIDTimeMemory = 0;
 
 const int alarm_pin = D4;
+
+/* Get the rtc object */
+STM32RTC &rtc = STM32RTC::getInstance();
+
+/* Change these values to set the current initial time */
+const byte seconds = 0;
+const byte minutes = 0;
+const byte hours = 16;
+
+/* Change these values to set the current initial date */
+/* Monday 15th June 2015 */
+const byte weekDay = 1;
+const byte day = 15;
+const byte month = 6;
+const byte year = 15;
 
 void setup() {
     SPI.begin();
@@ -30,6 +46,19 @@ void setup() {
     user.isEnabled = true;
 
     users.emplace_back(user);
+
+    rtc.begin(); // initialize RTC 24H format
+
+    // Set the time
+    rtc.setHours(hours);
+    rtc.setMinutes(minutes);
+    rtc.setSeconds(seconds);
+
+    // Set the date
+    rtc.setWeekDay(weekDay);
+    rtc.setDay(day);
+    rtc.setMonth(month);
+    rtc.setYear(year);
 }
 
 void loop() {
@@ -165,6 +194,33 @@ void deleteUser(User *user) {
     delete user;
 }
 
+void setDate() {
+    Serial.println("Hour: ");
+    String hour;
+    while (hour.length() == 0) {
+        if (Serial.available() > 0) {
+            hour = Serial.readString();
+            hour.trim();
+        }
+    }
+    rtc.setHours(hour.toInt());
+    Serial.println("Minutes: ");
+    String minute;
+    while (minute.length() == 0) {
+        if (Serial.available() > 0) {
+            minute = Serial.readString();
+            minute.trim();
+        }
+    }
+    rtc.setMinutes(minute.toInt());
+    Serial.println("Current time set succefully...");
+    Serial.printf("%02d:%02d:%02d.%03d\n",
+                  rtc.getHours(),
+                  rtc.getMinutes(),
+                  rtc.getSeconds(),
+                  rtc.getSubSeconds());
+}
+
 void readSerial() {
     if (Serial && Serial.available() > 0) {
         String str = Serial.readString(); // read until timeout
@@ -177,10 +233,21 @@ void readSerial() {
             printUsers();
         } else if (str == "userdel") {
             deleteUserBySerial();
+        } else if (str == "setDate") {
+            setDate();
+        } else if (str == "printTime") {
+            Serial.printf("%02d:%02d:%02d.%03d\n",
+                          rtc.getHours(),
+                          rtc.getMinutes(),
+                          rtc.getSeconds(),
+                          rtc.getSubSeconds());
         } else {
             Serial.println(F("\nCommands available :"));
             Serial.println(F("\t - useradd | Add user"));
             Serial.println(F("\t - print-user | List users"));
+            Serial.println(F("\t - userdel | Delete user"));
+            Serial.println(F("\t - setDate | set a new date"));
+            Serial.println(F("\t - printTime | Print the time"));
             Serial.print("\n\n");
         }
     }
