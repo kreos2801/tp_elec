@@ -1,4 +1,6 @@
 #pragma once
+#include <Arduino.h>
+
 
 typedef struct NUID_s {
     byte size; // Number of bytes in the UID. 4, 7 or 10.
