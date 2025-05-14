@@ -1,6 +1,11 @@
 #pragma once
 #include <Arduino.h>
 
+enum ALARM_STATE {
+    OFF,
+    ON,
+    TRIGGERED
+};
 
 typedef struct NUID_s {
     byte size; // Number of bytes in the UID. 4, 7 or 10.
@@ -33,3 +38,9 @@ void addUser(const String &username, const NUID *nuid);
 void deleteUser(User *user);
 
 void printUsers();
+
+void setAlarmOn();
+
+void updateLed();
+
+void triggerAlarm();

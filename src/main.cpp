@@ -11,9 +11,14 @@ MFRC522 mfrc522(SS_PIN, RST_PIN);
 
 std::list<User> users;
 
+ALARM_STATE alarmState = OFF;
+
+constexpr int alarm_led_pin = D5;
+
 unsigned long RFIDTimeMemory = 0;
 
-const int alarm_pin = D4;
+constexpr int alarm_pin = D4;
+bool pinState = false;
 
 /* Get the rtc object */
 STM32RTC &rtc = STM32RTC::getInstance();
@@ -37,6 +42,7 @@ void setup() {
     delay(1000);
     pinMode(alarm_pin, OUTPUT);
     digitalWrite(alarm_pin, LOW);
+    pinMode(alarm_led_pin, OUTPUT);
 
     User user;
     user.name = "Adrien";
@@ -61,6 +67,8 @@ void setup() {
 }
 
 void loop() {
+    updateLed();
+
     // Serial.println("Hello World!");
     readSerial();
 
@@ -88,6 +96,36 @@ void loop() {
         }
         delete nuid;
     }
+}
+
+unsigned long ledTimeMemory = 0;
+int val = 0;
+bool ast = true;
+
+void updateLed() {
+    if (alarmState == OFF) {
+        digitalWrite(alarm_led_pin, LOW);
+        return;
+    }
+
+    if (alarmState == TRIGGERED) {
+        if (millis() - ledTimeMemory >= 200) {
+            pinState = !pinState;
+            Serial.println(pinState);
+            ledTimeMemory = millis();
+            digitalWrite(alarm_led_pin, pinState);
+        }
+    }
+
+    if (alarmState == ON) {
+        if (millis() - ledTimeMemory >= 100) {
+            ledTimeMemory = millis();
+            val += ast ? 50 : -50;
+            if (val > 255 || val < 50) ast = !ast;
+            analogWrite(alarm_led_pin, val);
+        }
+    }
+
 }
 
 NUID *read() {
@@ -234,6 +272,10 @@ void readSerial() {
             deleteUserBySerial();
         } else if (str == "setDate") {
             setDate();
+        } else if (str == "set-alarm on") {
+            setAlarmOn();
+        } else if (str == "set-alarm trig") {
+            triggerAlarm();
         } else if (str == "printTime") {
             Serial.printf("%02d:%02d:%02d.%03d\n",
                           rtc.getHours(),
@@ -247,6 +289,7 @@ void readSerial() {
             Serial.println(F("\t - userdel | Delete user"));
             Serial.println(F("\t - setDate | set a new date"));
             Serial.println(F("\t - printTime | Print the time"));
+            Serial.println(F("\t - set-alarm on | Turn on alarm"));
             Serial.print("\n\n");
         }
     }
@@ -276,4 +319,13 @@ void printUsers() {
                       user.endHour[1]);
         Serial.println();
     }
+}
+
+
+void setAlarmOn() {
+    alarmState = ON;
+}
+
+void triggerAlarm() {
+    alarmState = TRIGGERED;
 }
