@@ -17,6 +17,8 @@ constexpr int alarm_led_pin = D5;
 
 unsigned long RFIDTimeMemory = 0;
 
+constexpr int on_pin = A0;
+
 constexpr int alarm_pin = D4;
 bool pinState = false;
 
@@ -41,6 +43,7 @@ void setup() {
     Serial.begin(9600);
     delay(1000);
     pinMode(alarm_pin, OUTPUT);
+    pinMode(on_pin, INPUT);
     digitalWrite(alarm_pin, LOW);
     pinMode(alarm_led_pin, OUTPUT);
 
@@ -66,11 +69,21 @@ void setup() {
     rtc.setYear(year);
 }
 
+unsigned long alarmMemory = millis();
+
 void loop() {
     updateLed();
 
     // Serial.println("Hello World!");
     readSerial();
+
+    if (analogRead(on_pin) > 500) {
+        setAlarmOn();
+    }
+
+    if (alarmState == TRIGGERED && millis() - alarmMemory > 4000) {
+        digitalWrite(alarm_pin, LOW);
+    }
 
     if (millis() - RFIDTimeMemory >= 200) {
         const NUID *nuid = read();
@@ -86,12 +99,15 @@ void loop() {
 
             const User *user = getUserByUID(nuid);
             if (user != nullptr) {
+                alarmState = OFF;
                 Serial.printf("User name: %s\n", user->name.c_str());
             } else {
                 Serial.println("User not found");
-                digitalWrite(alarm_pin, HIGH);
-                delay(5000);
-                digitalWrite(alarm_pin, LOW);
+                if (alarmState == ON) {
+                    alarmMemory = millis();
+                    alarmState = TRIGGERED;
+                    digitalWrite(alarm_pin, HIGH);
+                }
             }
         }
         delete nuid;
@@ -104,20 +120,16 @@ bool ast = true;
 
 void updateLed() {
     if (alarmState == OFF) {
-        digitalWrite(alarm_led_pin, LOW);
-        return;
-    }
-
-    if (alarmState == TRIGGERED) {
+        Serial.println("Alarm off");
+        analogWrite(alarm_led_pin, LOW);
+    } else if (alarmState == TRIGGERED) {
         if (millis() - ledTimeMemory >= 200) {
             pinState = !pinState;
             Serial.println(pinState);
             ledTimeMemory = millis();
             digitalWrite(alarm_led_pin, pinState);
         }
-    }
-
-    if (alarmState == ON) {
+    } else if (alarmState == ON) {
         if (millis() - ledTimeMemory >= 100) {
             ledTimeMemory = millis();
             val += ast ? 50 : -50;
@@ -125,7 +137,6 @@ void updateLed() {
             analogWrite(alarm_led_pin, val);
         }
     }
-
 }
 
 NUID *read() {
