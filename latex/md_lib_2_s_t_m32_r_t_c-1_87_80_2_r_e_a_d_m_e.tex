@@ -1,0 +1,221 @@
+\chapter{STM32\+RTC}
+\hypertarget{md_lib_2_s_t_m32_r_t_c-1_87_80_2_r_e_a_d_m_e}{}\label{md_lib_2_s_t_m32_r_t_c-1_87_80_2_r_e_a_d_m_e}\index{STM32RTC@{STM32RTC}}
+\label{md_lib_2_s_t_m32_r_t_c-1_87_80_2_r_e_a_d_m_e_autotoc_md0}%
+\Hypertarget{md_lib_2_s_t_m32_r_t_c-1_87_80_2_r_e_a_d_m_e_autotoc_md0}%
+A RTC library for STM32.\hypertarget{md_lib_2_s_t_m32_r_t_c-1_87_80_2_r_e_a_d_m_e_autotoc_md1}{}\doxysection{\texorpdfstring{Requirement}{Requirement}}\label{md_lib_2_s_t_m32_r_t_c-1_87_80_2_r_e_a_d_m_e_autotoc_md1}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/stm32duino/Arduino_Core_STM32}{\texttt{ Arduino\+\_\+\+Core\+\_\+\+STM32}} version \texorpdfstring{$>$}{>}= 1.\+3.\+0
+\end{DoxyItemize}\hypertarget{md_lib_2_s_t_m32_r_t_c-1_87_80_2_r_e_a_d_m_e_autotoc_md2}{}\doxysection{\texorpdfstring{API}{API}}\label{md_lib_2_s_t_m32_r_t_c-1_87_80_2_r_e_a_d_m_e_autotoc_md2}
+This library is based on the Arduino RTCZero library. The library allows to take control of the internal RTC of the STM32 boards.
+
+Singleton design pattern is used to ensure that only one \doxylink{class_s_t_m32_r_t_c}{STM32\+RTC} instance is instantiated\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{\textcolor{comment}{/*\ Get\ the\ rtc\ object\ */}}
+\DoxyCodeLine{\mbox{\hyperlink{class_s_t_m32_r_t_c}{STM32RTC}}\&\ rtc\ =\ STM32RTC::getInstance();}
+
+\end{DoxyCode}
+
+
+The following functions are not supported\+:
+
+
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void standby\+Mode()}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+: use the STM32 Low Power library instead.
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily uint8\+\_\+t get\+Alarm\+Month()}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+: month not supported by STM32 RTC architecture.
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily uint8\+\_\+t get\+Alarm\+Year()}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+: year not supported by STM32 RTC architecture.
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void set\+Alarm\+Month(uint8\+\_\+t month)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+: month not supported by STM32 RTC architecture.
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void set\+Alarm\+Year(uint8\+\_\+t year)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+: year not supported by STM32 RTC architecture.
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void set\+Alarm\+Date(uint8\+\_\+t day, uint8\+\_\+t month, uint8\+\_\+t year)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+: month and year not supported by STM32 RTC architecture.
+\end{DoxyItemize}
+
+The following functions have been added to support specific STM32 RTC features\+:
+
+{\itshape RTC hours mode (12 or 24)}
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void begin(\+Hour\+\_\+\+Format format)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\end{DoxyItemize}
+
+{\itshape RTC clock source}
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily Source\+\_\+\+Clock get\+Clock\+Source(void)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \+: get current clock source.
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void set\+Clock\+Source(\+Source\+\_\+\+Clock source, uint32\+\_\+t prediv\+A, uint32\+\_\+t prediv\+S)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \+: set the clock source ({\ttfamily LSI\+\_\+\+CLOCK}, {\ttfamily LSE\+\_\+\+CLOCK} or {\ttfamily HSE\+\_\+\+CLOCK}) and (a)synchronous prescaler values. This function must be called before {\ttfamily begin()}. Use {\ttfamily (PREDIVA\+\_\+\+MAX + 1)} and {\ttfamily (PREDIVS\+\_\+\+MAX +1)} to reset value and use computed ones. Those values have to match the following conditions\+: \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+\_\+1\+Hz = RTC CLK source / ((predivA + 1) \texorpdfstring{$\ast$}{*} (predivS + 1))\+\_\+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\end{DoxyItemize}
+
+{\itshape RTC Asynchronous and Synchronous prescaler}
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void get\+Prediv(uint32\+\_\+t \texorpdfstring{$\ast$}{*}prediv\+A, uint32\+\_\+t \texorpdfstring{$\ast$}{*}prediv\+S)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \+: get (a)synchronous prescaler values if set else computed ones for the current clock source.
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void set\+Prediv(uint32\+\_\+t prediv\+A, uint32\+\_\+t prediv\+S)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} \+: set (a)synchronous prescaler values. This function must be called before {\ttfamily begin()}. Use {\ttfamily (PREDIVA\+\_\+\+MAX + 1)} and {\ttfamily (PREDIVS\+\_\+\+MAX +1)} to reset value and use computed ones. Those values have to match the following conditions\+: \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+\_\+1\+Hz = RTC CLK source / ((predivA + 1) \texorpdfstring{$\ast$}{*} (predivS + 1))\+\_\+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\end{DoxyItemize}
+
+{\itshape Sub\+Seconds management}
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily uint32\+\_\+t get\+Sub\+Seconds(void)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void set\+Sub\+Seconds(uint32\+\_\+t sub\+Seconds)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\end{DoxyItemize}
+
+{\itshape Hour format (AM or PM)}
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily uint8\+\_\+t get\+Hours(AM\+\_\+\+PM \texorpdfstring{$\ast$}{*}period = nullptr)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void set\+Hours(uint8\+\_\+t hours, AM\+\_\+\+PM period = AM)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void set\+Time(uint8\+\_\+t hours, uint8\+\_\+t minutes, uint8\+\_\+t seconds, uint32\+\_\+t sub\+Seconds = 1000, AM\+\_\+\+PM period = AM)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void set\+Alarm\+Hours(uint8\+\_\+t hours, AM\+\_\+\+PM period = AM)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily uint8\+\_\+t get\+Alarm\+Hours(\+AM\+\_\+\+PM \texorpdfstring{$\ast$}{*}period)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void set\+Alarm\+Time(uint8\+\_\+t hours, uint8\+\_\+t minutes, uint8\+\_\+t seconds, AM\+\_\+\+PM period)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\end{DoxyItemize}
+
+{\itshape Week day configuration}
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily uint8\+\_\+t get\+Week\+Day(void)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void set\+Week\+Day(uint8\+\_\+t week\+Day)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void set\+Date(uint8\+\_\+t week\+Day, uint8\+\_\+t day, uint8\+\_\+t month, uint8\+\_\+t year)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\end{DoxyItemize}
+
+{\itshape Time and date configuration (added for convenience)}
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void get\+Time(uint8\+\_\+t \texorpdfstring{$\ast$}{*}hours, uint8\+\_\+t \texorpdfstring{$\ast$}{*}minutes, uint8\+\_\+t \texorpdfstring{$\ast$}{*}seconds, uint32\+\_\+t \texorpdfstring{$\ast$}{*}sub\+Seconds, AM\+\_\+\+PM \texorpdfstring{$\ast$}{*}period = nullptr)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void get\+Date(uint8\+\_\+t \texorpdfstring{$\ast$}{*}week\+Day, uint8\+\_\+t \texorpdfstring{$\ast$}{*}day, uint8\+\_\+t \texorpdfstring{$\ast$}{*}month, uint8\+\_\+t \texorpdfstring{$\ast$}{*}year)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\end{DoxyItemize}\hypertarget{md_lib_2_s_t_m32_r_t_c-1_87_80_2_r_e_a_d_m_e_autotoc_md3}{}\doxysubsubsection{\texorpdfstring{Since STM32\+RTC version higher than 1.\+0.\+3}{Since STM32\+RTC version higher than 1.\+0.\+3}}\label{md_lib_2_s_t_m32_r_t_c-1_87_80_2_r_e_a_d_m_e_autotoc_md3}
+{\itshape Sub\+Seconds alarm management}
+
+Important note\+:
+\begin{DoxyItemize}
+\item STM32\+F1 and STM32\+L1xx (Ultra Low Power Medium (ULPM) density) series do not support subsecond.
+\item Subsecond “resolution” depends on synchronous prescaler value. Bigger than this value is, better resolution will get for subsecond.
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void set\+Alarm\+Sub\+Seconds(uint32\+\_\+t sub\+Seconds)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\item {\bfseries{Updated API\+:}}
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void set\+Alarm\+Time(uint8\+\_\+t hours, uint8\+\_\+t minutes, uint8\+\_\+t seconds, uint32\+\_\+t sub\+Seconds = 0, AM\+\_\+\+PM period = AM)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily uint32\+\_\+t get\+Epoch(uint32\+\_\+t \texorpdfstring{$\ast$}{*}sub\+Seconds = nullptr)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void set\+Epoch(uint32\+\_\+t ts, uint32\+\_\+t sub\+Seconds = 0)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void set\+Alarm\+Epoch(uint32\+\_\+t ts, Alarm\+\_\+\+Match match = MATCH\+\_\+\+DHHMMSS, uint32\+\_\+t sub\+Seconds = 0)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+{\itshape Library version management}
+
+STM32 RTC library version is based on Semantic Versioning 2.\+0.\+0 (\href{https://semver.org/}{\texttt{ https\+://semver.\+org/}})
+
+This will ease some dependencies\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily STM32\+\_\+\+RTC\+\_\+\+VERSION\+\_\+\+MAJOR} -\/\texorpdfstring{$>$}{>} major version
+\item {\ttfamily STM32\+\_\+\+RTC\+\_\+\+VERSION\+\_\+\+MINOR} -\/\texorpdfstring{$>$}{>} minor version
+\item {\ttfamily STM32\+\_\+\+RTC\+\_\+\+VERSION\+\_\+\+PATCH} -\/\texorpdfstring{$>$}{>} patch version
+\item {\ttfamily STM32\+\_\+\+RTC\+\_\+\+VERSION\+\_\+\+EXTRA} -\/\texorpdfstring{$>$}{>} Extra label with\+:
+\begin{DoxyItemize}
+\item 0\+: official release
+\item \mbox{[}1-\/9\mbox{]}\+: release candidate
+\item F\mbox{[}0-\/9\mbox{]}\+: development
+\end{DoxyItemize}
+\item {\ttfamily STM32\+\_\+\+RTC\+\_\+\+VERSION} -\/-\/\texorpdfstring{$>$}{>} Full version number
+\end{DoxyItemize}
+
+{\ttfamily STM32\+\_\+\+RTC\+\_\+\+VERSION} can de used to handle some API change\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ ++}
+\DoxyCodeLine{\textcolor{preprocessor}{\#if\ defined(STM32\_RTC\_VERSION)\ \&\&\ (STM32\_RTC\_VERSION\ \ >=\ 0x01010000)}}
+\DoxyCodeLine{\ \ rtc.\mbox{\hyperlink{class_s_t_m32_r_t_c_afc58f0500fdcdb80d1e6953f78ea1b81}{setAlarmTime}}(alarmHours,\ alarmMinutes,\ alarmSeconds,\ 123);}
+\DoxyCodeLine{\textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\ \ rtc.\mbox{\hyperlink{class_s_t_m32_r_t_c_afc58f0500fdcdb80d1e6953f78ea1b81}{setAlarmTime}}(alarmHours,\ alarmMinutes,\ alarmSeconds);}
+\DoxyCodeLine{\textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
+\hypertarget{md_lib_2_s_t_m32_r_t_c-1_87_80_2_r_e_a_d_m_e_autotoc_md4}{}\doxysubsubsection{\texorpdfstring{Since STM32\+RTC version higher than 1.\+1.\+1}{Since STM32\+RTC version higher than 1.\+1.\+1}}\label{md_lib_2_s_t_m32_r_t_c-1_87_80_2_r_e_a_d_m_e_autotoc_md4}
+{\itshape One-\/\+Second interrupt}
+
+STM32 RTC includes a one-\/second interrupt for generating a periodic interrupt signal.
+\begin{DoxyItemize}
+\item This feature is native on the stm32\+F1xx and mapped on the existing Wake\+Up interrupt on other stm32 mcus.
+\item It is not available on some stm32\+F0 devices.
+\item {\bfseries{new API\+:}}
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void attach\+Seconds\+Interrupt(void\+Func\+Ptr callback)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void detach\+Seconds\+Interrupt(void)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+{\itshape Date retention for stm32\+F1xx}
+
+STM32 RTC includes date save/retrieve mechanism for the stm32\+F1xx mcu, that do not have a date counter.
+
+The content is stored in Back\+Up memory which is kept during Reset and powered by Vbat when the Vdd is off.\hypertarget{md_lib_2_s_t_m32_r_t_c-1_87_80_2_r_e_a_d_m_e_autotoc_md5}{}\doxysubsubsection{\texorpdfstring{Since STM32 Core version \texorpdfstring{$>$}{>} 1.\+5.\+0}{Since STM32 Core version \texorpdfstring{$>$}{>} 1.\+5.\+0}}\label{md_lib_2_s_t_m32_r_t_c-1_87_80_2_r_e_a_d_m_e_autotoc_md5}
+{\itshape Reset time management}
+
+By default, if a time is set it will not be reset after a reboot.
+
+Using {\ttfamily begin(true)} or {\ttfamily begin(true, HOUR\+\_\+24)} will reset the RTC registers.
+
+To know if a time has already been set use\+:
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily bool is\+Time\+Set(void)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{++}
+\DoxyCodeLine{\ \textcolor{keywordflow}{if}\ (!rtc.isTimeSet())\ \{}
+\DoxyCodeLine{\ \ \ \textcolor{comment}{//\ Set\ the\ time}}
+\DoxyCodeLine{\ \ \ rtc.\mbox{\hyperlink{class_s_t_m32_r_t_c_a8b63ef8d27d7c186d81939cf7c1a337b}{setHours}}(hours);}
+\DoxyCodeLine{\ \ \ rtc.\mbox{\hyperlink{class_s_t_m32_r_t_c_aac020fa0b2694161134a51f4494e42ee}{setMinutes}}(minutes);}
+\DoxyCodeLine{\ \ \ rtc.\mbox{\hyperlink{class_s_t_m32_r_t_c_a92a1e8f507d81da11536d6830eb3526c}{setSeconds}}(seconds);}
+\DoxyCodeLine{\ \}}
+
+\end{DoxyCode}
+
+\end{DoxyItemize}\hypertarget{md_lib_2_s_t_m32_r_t_c-1_87_80_2_r_e_a_d_m_e_autotoc_md6}{}\doxysubsubsection{\texorpdfstring{Since STM32\+RTC version higher than 1.\+3.\+4}{Since STM32\+RTC version higher than 1.\+3.\+4}}\label{md_lib_2_s_t_m32_r_t_c-1_87_80_2_r_e_a_d_m_e_autotoc_md6}
+{\itshape Second alarm (Alarm B)}
+
+Some STM32 RTC have a second alarm named {\ttfamily RTC\+\_\+\+ALARM\+\_\+B}. It is possible to use it thanks all alarm API with an extra argument\+:
+\begin{DoxyItemize}
+\item {\ttfamily STM32\+RTC\+::\+ALARM\+\_\+A}
+\item {\ttfamily STM32\+RTC\+::\+ALARM\+\_\+B}
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{++}
+\DoxyCodeLine{\ \ \ rtc.\mbox{\hyperlink{class_s_t_m32_r_t_c_adcd5814091cef21194dd142ac25eb9ee}{attachInterrupt}}(myCallback,\ \&myCallbackdata,\ STM32RTC::ALARM\_B);}
+\DoxyCodeLine{\ \ \ rtc.\mbox{\hyperlink{class_s_t_m32_r_t_c_a02cbce8c6dd4d601ba8b183afccb0c2d}{setAlarmDay}}(day,\ STM32RTC::ALARM\_B);}
+\DoxyCodeLine{\ \ \ rtc.\mbox{\hyperlink{class_s_t_m32_r_t_c_afc58f0500fdcdb80d1e6953f78ea1b81}{setAlarmTime}}(hours,\ minutes,\ seconds\ +\ 5,\ 567,\ STM32RTC::ALARM\_B);}
+\DoxyCodeLine{\ \ \ rtc.\mbox{\hyperlink{class_s_t_m32_r_t_c_afac46f3b1ba34a56d86fdd4dca26d0f4}{enableAlarm}}(rtc.MATCH\_DHHMMSS,\ STM32RTC::ALARM\_B);}
+
+\end{DoxyCode}
+\hypertarget{md_lib_2_s_t_m32_r_t_c-1_87_80_2_r_e_a_d_m_e_autotoc_md7}{}\doxysubsubsection{\texorpdfstring{Since STM32\+RTC version higher than 1.\+3.\+7}{Since STM32\+RTC version higher than 1.\+3.\+7}}\label{md_lib_2_s_t_m32_r_t_c-1_87_80_2_r_e_a_d_m_e_autotoc_md7}
+{\itshape Get the RTC handle}
+
+
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily RTC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}\+RTC\+\_\+\+Get\+Handle(void)}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\end{DoxyItemize}
+
+{\itshape binary and mix modes}
+
+Some STM32 RTC have a binary mode with 32-\/bit free-\/running counter in addition to their BCD mode for calendar (for example stm32wl55). Combined with BCD this is the MIX mode. Only using the binary counter is the BIN mode. Three RTC functional modes are available\+:
+\begin{DoxyItemize}
+\item {\ttfamily STM32\+RTC\+::\+MODE\+\_\+\+BCD}
+\item {\ttfamily STM32\+RTC\+::\+MODE\+\_\+\+MIX}
+\item {\ttfamily STM32\+RTC\+::\+MODE\+\_\+\+BIN}
+\end{DoxyItemize}
+
+\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily Binary\+\_\+\+Mode get\+Binary\+Mode(void);}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void set\+Binary\+Mode(\+Binary\+\_\+\+Mode mode);}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\end{DoxyItemize}
+
+Any API using the Subsecond parameter is expressed in milliseconds whatever the RTC input clock. This parameter is \mbox{[}0..999\mbox{]} in MIX or BCD mode and \mbox{[}0..0x\+FFFFFFFF\mbox{]} in BIN mode. In BIN only mode, time and date registers are not used by the RTC. Thus the get\+Epoch function is only to be called to get the subsecond \mbox{[}0..0x\+FFFFFFFF\mbox{]} (returned time\+\_\+t is not valid). The set\+Alarm\+Epoch only uses the sub-\/second \mbox{[}0..0x\+FFFFFFFF\mbox{]} (time\+\_\+t value is useless).
+
+{\itshape Sub\+Seconds underflow}
+
+Only dor STM32\+WLxx. Manage interrupt (SSRU) when Sub\+Seconds register underflow. Used by STM32\+Lo\+Ra\+WAN.
+
+
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void attach\+Sub\+Seconds\+Underflow\+Interrupt(void\+Func\+Ptr callback);}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}{\ttfamily void detach\+Sub\+Seconds\+Underflow\+Interrupt(void);}\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}
+\end{DoxyItemize}
+
+Refer to the Arduino RTC documentation for the other functions \href{http://arduino.cc/en/Reference/RTC}{\texttt{ http\+://arduino.\+cc/en/\+Reference/\+RTC}}\hypertarget{md_lib_2_s_t_m32_r_t_c-1_87_80_2_r_e_a_d_m_e_autotoc_md8}{}\doxysubsubsection{\texorpdfstring{Since STM32\+RTC version higher than 1.\+4.\+0}{Since STM32\+RTC version higher than 1.\+4.\+0}}\label{md_lib_2_s_t_m32_r_t_c-1_87_80_2_r_e_a_d_m_e_autotoc_md8}
+{\itshape Is\+Format\+\_\+24\+Hour}
+
+Returns True if the current Hour Format is HOUR\+\_\+24 else false if Hour format is HOUR\+\_\+12\hypertarget{md_lib_2_s_t_m32_r_t_c-1_87_80_2_r_e_a_d_m_e_autotoc_md9}{}\doxysubsection{\texorpdfstring{Source}{Source}}\label{md_lib_2_s_t_m32_r_t_c-1_87_80_2_r_e_a_d_m_e_autotoc_md9}
+Source files available at\+: \href{https://github.com/stm32duino/STM32RTC}{\texttt{ https\+://github.\+com/stm32duino/\+STM32\+RTC}} 

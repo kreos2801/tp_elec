@@ -1,0 +1,195 @@
+\doxysection{rtc.\+h}
+\hypertarget{rtc_8h_source}{}\label{rtc_8h_source}\index{lib/STM32RTC-\/1.7.0/src/rtc.h@{lib/STM32RTC-\/1.7.0/src/rtc.h}}
+\mbox{\hyperlink{rtc_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00036\ \textcolor{comment}{/*\ Define\ to\ prevent\ recursive\ inclusion\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#ifndef\ \_\_RTC\_H}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ \_\_RTC\_H}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{comment}{/*\ Includes\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ "{}stm32\_def.h"{}}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ "{}backup.h"{}}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ "{}clock.h"{}}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#if\ defined(HAL\_RTC\_MODULE\_ENABLED)\ \&\&\ !defined(HAL\_RTC\_MODULE\_ONLY)}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{comment}{/*\ Exported\ types\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00053\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00054\ \ \ HOUR\_FORMAT\_12,}
+\DoxyCodeLine{00055\ \ \ HOUR\_FORMAT\_24}
+\DoxyCodeLine{00056\ \}\ hourFormat\_t;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00059\ \ \ MODE\_BINARY\_NONE,\ \textcolor{comment}{/*\ BCD\ only\ */}}
+\DoxyCodeLine{00060\ \ \ MODE\_BINARY\_ONLY,}
+\DoxyCodeLine{00061\ \ \ MODE\_BINARY\_MIX}
+\DoxyCodeLine{00062\ \}\ binaryMode\_t;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00065\ \ \ HOUR\_AM,}
+\DoxyCodeLine{00066\ \ \ HOUR\_PM}
+\DoxyCodeLine{00067\ \}\ hourAM\_PM\_t;}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{comment}{/*\ See\ AN4579\ Table\ 5\ for\ possible\ values\ */}}
+\DoxyCodeLine{00070\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00071\ \ \ OFF\_MSK\ =\ 0,}
+\DoxyCodeLine{00072\ \ \ SS\_MSK\ \ =\ 1,\ \textcolor{comment}{/*\ MSK0\ */}}
+\DoxyCodeLine{00073\ \ \ MM\_MSK\ \ =\ 2,\ \textcolor{comment}{/*\ MSK1\ */}}
+\DoxyCodeLine{00074\ \ \ HH\_MSK\ \ =\ 4,\ \textcolor{comment}{/*\ MSK2\ */}}
+\DoxyCodeLine{00075\ \ \ D\_MSK\ \ \ =\ 8,\ \textcolor{comment}{/*\ MSK3\ */}}
+\DoxyCodeLine{00076\ \ \ \textcolor{comment}{/*\ NOTE:\ STM32\ RTC\ can't\ assign\ a\ month\ or\ a\ year\ to\ an\ alarm.\ Those\ enum}}
+\DoxyCodeLine{00077\ \textcolor{comment}{\ \ are\ kept\ for\ compatibility\ but\ are\ ignored\ inside\ enableAlarm().\ */}}
+\DoxyCodeLine{00078\ \ \ M\_MSK\ \ \ =\ 16,}
+\DoxyCodeLine{00079\ \ \ Y\_MSK\ \ \ =\ 32,}
+\DoxyCodeLine{00080\ \ \ SUBSEC\_MSK\ =\ 48,}
+\DoxyCodeLine{00081\ \ \ ALL\_MSK\ =\ 0xFF}
+\DoxyCodeLine{00082\ \}\ alarmMask\_t;}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{00085\ \ \ ALARM\_A\ =\ RTC\_ALARM\_A,}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#ifdef\ RTC\_ALARM\_B}}
+\DoxyCodeLine{00087\ \ \ ALARM\_B\ =\ RTC\_ALARM\_B}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00089\ \}\ alarm\_t;}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{keyword}{typedef}\ void(*voidCallbackPtr)(\textcolor{keywordtype}{void}\ *);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{comment}{/*\ Exported\ constants\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#if\ defined(STM32F1xx)}}
+\DoxyCodeLine{00096\ \textcolor{comment}{/*\ select\ 32\ bits\ in\ backup\ memory\ to\ store\ date.}}
+\DoxyCodeLine{00097\ \textcolor{comment}{\ \ \ 2\ consecutive\ 16bit\ reg.\ are\ reserved:\ RTC\_BKP\_DATE\ \&\ RTC\_BKP\_DATE\ +\ 1\ */}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#if\ !defined(RTC\_BKP\_DATE)}}
+\DoxyCodeLine{00099\ \textcolor{comment}{/*\ can\ be\ changed\ for\ your\ convenience\ (here\ :\ LL\_RTC\_BKP\_DR6\ \&\ LL\_RTC\_BKP\_DR7)\ */}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ RTC\_BKP\_DATE\ LL\_RTC\_BKP\_DR6}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ STM32F1xx\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{comment}{/*\ Interrupt\ priority\ */}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#ifndef\ RTC\_IRQ\_PRIO}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#define\ RTC\_IRQ\_PRIO\ \ \ \ \ \ \ 2}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#ifndef\ RTC\_IRQ\_SUBPRIO}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#define\ RTC\_IRQ\_SUBPRIO\ \ \ \ 0}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#ifndef\ RTC\_IRQ\_SSRU\_PRIO}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ RTC\_IRQ\_SSRU\_PRIO\ \ \ \ \ 0}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#ifndef\ RTC\_IRQ\_SSRU\_SUBPRIO}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#define\ RTC\_IRQ\_SSRU\_SUBPRIO\ \ 0}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#define\ HSE\_RTC\_MAX\ 1000000U}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#if\ !defined(STM32F1xx)}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#if\ !defined(RTC\_PRER\_PREDIV\_S)\ ||\ !defined(RTC\_PRER\_PREDIV\_S)}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#error\ "{}Unknown\ Family\ -\/\ unknown\ synchronous\ prescaler"{}}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#define\ PREDIVA\_MAX\ (RTC\_PRER\_PREDIV\_A\ >>\ RTC\_PRER\_PREDIV\_A\_Pos)}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#define\ PREDIVS\_MAX\ (RTC\_PRER\_PREDIV\_S\ >>\ RTC\_PRER\_PREDIV\_S\_Pos)}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00126\ \textcolor{comment}{/*\ for\ stm32F1\ the\ MAX\ value\ is\ combining\ PREDIV\ low\ \&\ high\ registers\ */}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#define\ PREDIVA\_MAX\ 0xFFFFFU}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#define\ PREDIVS\_MAX\ 0xFFFFFFFFU\ }\textcolor{comment}{/*\ Unused\ for\ STM32F1xx\ series\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ !STM32F1xx\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#if\ defined(STM32C0xx)\ ||\ defined(STM32F0xx)\ ||\ defined(STM32H5xx)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\ \ \ \ defined(STM32L0xx)\ ||\ defined(STM32L5xx)\ ||\ defined(STM32U3xx)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\ \ \ \ defined(STM32U3xx)\ ||\ defined(STM32U5xx)\ ||\ defined(STM32WBAxx)}}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#define\ RTC\_Alarm\_IRQn\ RTC\_IRQn}}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#define\ RTC\_Alarm\_IRQHandler\ RTC\_IRQHandler}}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#if\ defined(STM32G0xx)\ ||\ defined(STM32U0xx)}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#define\ RTC\_Alarm\_IRQn\ RTC\_TAMP\_IRQn}}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#define\ RTC\_Alarm\_IRQHandler\ RTC\_TAMP\_IRQHandler}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{comment}{/*\ mapping\ the\ IRQn\ for\ the\ one-\/second\ interrupt\ depending\ on\ the\ soc\ */}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#if\ defined(STM32F1xx)\ ||\ (defined(STM32F0xx)\ \&\&\ defined(RTC\_CR\_WUTE))\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\ \ \ \ defined(STM32H5xx)\ ||\ defined(STM32L0xx)\ ||\ defined(STM32L5xx)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\ \ \ \ defined(STM32U3xx)\ ||\ defined(STM32U5xx)\ ||\ defined(STM32WBAxx)}}
+\DoxyCodeLine{00146\ \textcolor{comment}{//\ specific\ WakeUp\ interrupt}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#define\ ONESECOND\_IRQn\ RTC\_IRQn}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#elif\ defined(STM32MP1xx)}}
+\DoxyCodeLine{00149\ \textcolor{comment}{//\ global\ RTC\ interrupt}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#define\ ONESECOND\_IRQn\ RTC\_WKUP\_ALARM\_IRQn}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#elif\ defined(STM32G0xx)\ ||\ defined(STM32U0xx)}}
+\DoxyCodeLine{00152\ \textcolor{comment}{//\ global\ RTC/TAMP\ interrupt}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#define\ ONESECOND\_IRQn\ RTC\_TAMP\_IRQn}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#elif\ defined(CORE\_CM0PLUS)\ \&\&\ \(\backslash\)}}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\ \ \ \ \ \ (defined(STM32WL54xx)\ ||\ defined(STM32WL55xx)\ ||\ defined(STM32WL5Mxx))}}
+\DoxyCodeLine{00156\ \textcolor{comment}{//\ global\ RTC/LSS\ interrupt}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#define\ ONESECOND\_IRQn\ RTC\_LSECSS\_IRQn}}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#elif\ defined(RTC\_CR\_WUTE)}}
+\DoxyCodeLine{00159\ \textcolor{comment}{//\ specific\ WakeUp\ interrupt\ (including\ M4\ cpu\ of\ the\ STM32WLE5xx)}}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\#define\ ONESECOND\_IRQn\ RTC\_WKUP\_IRQn}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00162\ \textcolor{comment}{//\ no\ One-\/Second\ IRQ\ available\ for\ the\ series}}
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ STM32F1xx\ ||\ etc\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\#if\ defined(STM32F1xx)\ \&\&\ !defined(IS\_RTC\_WEEKDAY)}}
+\DoxyCodeLine{00166\ \textcolor{comment}{/*\ Compensate\ missing\ HAL\ definition\ */}}
+\DoxyCodeLine{00167\ \textcolor{preprocessor}{\#define\ IS\_RTC\_WEEKDAY(WEEKDAY)\ (((WEEKDAY)\ ==\ RTC\_WEEKDAY\_MONDAY)\ \ \ \ ||\ \(\backslash\)}}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((WEEKDAY)\ ==\ RTC\_WEEKDAY\_TUESDAY)\ \ \ ||\ \(\backslash\)}}
+\DoxyCodeLine{00169\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((WEEKDAY)\ ==\ RTC\_WEEKDAY\_WEDNESDAY)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((WEEKDAY)\ ==\ RTC\_WEEKDAY\_THURSDAY)\ \ ||\ \(\backslash\)}}
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((WEEKDAY)\ ==\ RTC\_WEEKDAY\_FRIDAY)\ \ \ \ ||\ \(\backslash\)}}
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((WEEKDAY)\ ==\ RTC\_WEEKDAY\_SATURDAY)\ \ ||\ \(\backslash\)}}
+\DoxyCodeLine{00173\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((WEEKDAY)\ ==\ RTC\_WEEKDAY\_SUNDAY))}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \textcolor{comment}{/*\ F1\ doesn't\ manage\ 12h\ format\ */}}
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\#define\ IS\_RTC\_HOUR12(HOUR)\ \ \ \ \ \ IS\_RTC\_HOUR24(HOUR)}}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ !STM32F1xx\ \&\&\ !IS\_RTC\_WEEKDAY\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \textcolor{comment}{/*\ Exported\ macro\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00180\ \textcolor{comment}{/*\ Exported\ functions\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00181\ RTC\_HandleTypeDef\ *RTC\_GetHandle(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00182\ \textcolor{keywordtype}{void}\ RTC\_SetClockSource(sourceClock\_t\ source);}
+\DoxyCodeLine{00183\ \textcolor{keywordtype}{void}\ RTC\_getPrediv(uint32\_t\ *asynch,\ uint32\_t\ *synch);}
+\DoxyCodeLine{00184\ \textcolor{keywordtype}{void}\ RTC\_setPrediv(uint32\_t\ asynch,\ uint32\_t\ synch);}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \textcolor{keywordtype}{bool}\ RTC\_init(hourFormat\_t\ format,\ binaryMode\_t\ mode,\ sourceClock\_t\ source,\ \textcolor{keywordtype}{bool}\ reset);}
+\DoxyCodeLine{00187\ \textcolor{keywordtype}{void}\ RTC\_DeInit(\textcolor{keywordtype}{bool}\ reset\_cb);}
+\DoxyCodeLine{00188\ \textcolor{keywordtype}{bool}\ RTC\_IsConfigured(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \textcolor{keywordtype}{void}\ RTC\_SetTime(uint8\_t\ hours,\ uint8\_t\ minutes,\ uint8\_t\ seconds,\ uint32\_t\ subSeconds,\ hourAM\_PM\_t\ period);}
+\DoxyCodeLine{00191\ \textcolor{keywordtype}{void}\ RTC\_GetTime(uint8\_t\ *hours,\ uint8\_t\ *minutes,\ uint8\_t\ *seconds,\ uint32\_t\ *subSeconds,\ hourAM\_PM\_t\ *period);}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \textcolor{keywordtype}{void}\ RTC\_SetDate(uint8\_t\ year,\ uint8\_t\ month,\ uint8\_t\ day,\ uint8\_t\ wday);}
+\DoxyCodeLine{00194\ \textcolor{keywordtype}{void}\ RTC\_GetDate(uint8\_t\ *year,\ uint8\_t\ *month,\ uint8\_t\ *day,\ uint8\_t\ *wday);}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \textcolor{keywordtype}{void}\ RTC\_StartAlarm(alarm\_t\ name,\ uint8\_t\ day,\ uint8\_t\ hours,\ uint8\_t\ minutes,\ uint8\_t\ seconds,\ uint32\_t\ subSeconds,\ hourAM\_PM\_t\ period,\ uint8\_t\ mask);}
+\DoxyCodeLine{00197\ \textcolor{keywordtype}{void}\ RTC\_StartAlarm64(alarm\_t\ name,\ uint8\_t\ day,\ uint8\_t\ hours,\ uint8\_t\ minutes,\ uint8\_t\ seconds,\ uint64\_t\ subSeconds,\ hourAM\_PM\_t\ period,\ uint8\_t\ mask);}
+\DoxyCodeLine{00198\ \textcolor{keywordtype}{void}\ RTC\_StopAlarm(alarm\_t\ name);}
+\DoxyCodeLine{00199\ \textcolor{keywordtype}{bool}\ RTC\_IsAlarmSet(alarm\_t\ name);}
+\DoxyCodeLine{00200\ \textcolor{keywordtype}{void}\ RTC\_GetAlarm(alarm\_t\ name,\ uint8\_t\ *day,\ uint8\_t\ *hours,\ uint8\_t\ *minutes,\ uint8\_t\ *seconds,\ uint32\_t\ *subSeconds,\ hourAM\_PM\_t\ *period,\ uint8\_t\ *mask);}
+\DoxyCodeLine{00201\ \textcolor{keywordtype}{void}\ attachAlarmCallback(voidCallbackPtr\ func,\ \textcolor{keywordtype}{void}\ *data,\ alarm\_t\ name);}
+\DoxyCodeLine{00202\ \textcolor{keywordtype}{void}\ detachAlarmCallback(alarm\_t\ name);}
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\#ifdef\ ONESECOND\_IRQn}}
+\DoxyCodeLine{00204\ \textcolor{keywordtype}{void}\ attachSecondsIrqCallback(voidCallbackPtr\ func);}
+\DoxyCodeLine{00205\ \textcolor{keywordtype}{void}\ detachSecondsIrqCallback(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00206\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ ONESECOND\_IRQn\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\#ifdef\ STM32WLxx}}
+\DoxyCodeLine{00208\ \textcolor{keywordtype}{void}\ attachSubSecondsUnderflowIrqCallback(voidCallbackPtr\ func);}
+\DoxyCodeLine{00209\ \textcolor{keywordtype}{void}\ detachSubSecondsUnderflowIrqCallback(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00210\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ STM32WLxx\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00211\ \textcolor{preprocessor}{\#if\ defined(STM32F1xx)}}
+\DoxyCodeLine{00212\ \textcolor{keywordtype}{void}\ RTC\_StoreDate(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00213\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00216\ \}}
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ HAL\_RTC\_MODULE\_ENABLED\ \ \&\&\ !HAL\_RTC\_MODULE\_ONLY\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_\_RTC\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \textcolor{comment}{/************************\ (C)\ COPYRIGHT\ STMicroelectronics\ *****END\ OF\ FILE****/}}
+
+\end{DoxyCode}

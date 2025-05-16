@@ -1,0 +1,96 @@
+\doxysection{User\+\_\+s Struct Reference}
+\hypertarget{struct_user__s}{}\label{struct_user__s}\index{User\_s@{User\_s}}
+
+
+User data structure for access control system.  
+
+
+
+
+{\ttfamily \#include $<$main.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{struct_user__s_a735b54ee4525b709ca13dc4119dfbde0}{operator==}} (const \mbox{\hyperlink{struct_user__s}{User\+\_\+s}} \&other) const
+\begin{DoxyCompactList}\small\item\em Equality comparison operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{struct_user__s_aa249f0a0646bdde5cabdd26253927ab8}\label{struct_user__s_aa249f0a0646bdde5cabdd26253927ab8} 
+String {\bfseries name} = "{}"{}
+\item 
+byte \mbox{\hyperlink{struct_user__s_a93e353b3bf6c3809388b7f3f2de0235d}{tag\+\_\+id}} \mbox{[}7\mbox{]} \{\}
+\item 
+bool \mbox{\hyperlink{struct_user__s_a51f806b7d0b8970e8f634829d93842e8}{days\+\_\+access}} \mbox{[}7\mbox{]} \{\}
+\item 
+bool \mbox{\hyperlink{struct_user__s_a811f7bb4dbf4f46e252de281faba339a}{is\+Enabled}} = false
+\item 
+std\+::array$<$ int, 2 $>$ \mbox{\hyperlink{struct_user__s_a7e3b770efe4dc418627de1c4d6ba6f27}{start\+Hour}} = \{-\/1, -\/1\}
+\item 
+std\+::array$<$ int, 2 $>$ \mbox{\hyperlink{struct_user__s_a2ea25b37207fb9ded0fb99046ae58452}{end\+Hour}} = \{-\/1, -\/1\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+User data structure for access control system. 
+
+Contains user identification information, access credentials, schedule permissions 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{struct_user__s_a735b54ee4525b709ca13dc4119dfbde0}\label{struct_user__s_a735b54ee4525b709ca13dc4119dfbde0} 
+\index{User\_s@{User\_s}!operator==@{operator==}}
+\index{operator==@{operator==}!User\_s@{User\_s}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool User\+\_\+s\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_user__s}{User\+\_\+s}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Equality comparison operator. 
+
+Access end time \mbox{[}hour, minute\mbox{]}, -\/1 means no restriction 
+\begin{DoxyParams}{Parameters}
+{\em other} & The \doxylink{struct_user__s}{User\+\_\+s} to compare with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if users have the same name, false otherwise 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{struct_user__s_a51f806b7d0b8970e8f634829d93842e8}\label{struct_user__s_a51f806b7d0b8970e8f634829d93842e8} 
+\index{User\_s@{User\_s}!days\_access@{days\_access}}
+\index{days\_access@{days\_access}!User\_s@{User\_s}}
+\doxysubsubsection{\texorpdfstring{days\_access}{days\_access}}
+{\footnotesize\ttfamily bool User\+\_\+s\+::days\+\_\+access\mbox{[}7\mbox{]} \{\}}
+
+RFID tag identifier bytes \Hypertarget{struct_user__s_a2ea25b37207fb9ded0fb99046ae58452}\label{struct_user__s_a2ea25b37207fb9ded0fb99046ae58452} 
+\index{User\_s@{User\_s}!endHour@{endHour}}
+\index{endHour@{endHour}!User\_s@{User\_s}}
+\doxysubsubsection{\texorpdfstring{endHour}{endHour}}
+{\footnotesize\ttfamily std\+::array$<$int, 2$>$ User\+\_\+s\+::end\+Hour = \{-\/1, -\/1\}}
+
+Access start time \mbox{[}hour, minute\mbox{]}, -\/1 means no restriction \Hypertarget{struct_user__s_a811f7bb4dbf4f46e252de281faba339a}\label{struct_user__s_a811f7bb4dbf4f46e252de281faba339a} 
+\index{User\_s@{User\_s}!isEnabled@{isEnabled}}
+\index{isEnabled@{isEnabled}!User\_s@{User\_s}}
+\doxysubsubsection{\texorpdfstring{isEnabled}{isEnabled}}
+{\footnotesize\ttfamily bool User\+\_\+s\+::is\+Enabled = false}
+
+Access permissions for each day of the week, indexed 0-\/6 \Hypertarget{struct_user__s_a7e3b770efe4dc418627de1c4d6ba6f27}\label{struct_user__s_a7e3b770efe4dc418627de1c4d6ba6f27} 
+\index{User\_s@{User\_s}!startHour@{startHour}}
+\index{startHour@{startHour}!User\_s@{User\_s}}
+\doxysubsubsection{\texorpdfstring{startHour}{startHour}}
+{\footnotesize\ttfamily std\+::array$<$int, 2$>$ User\+\_\+s\+::start\+Hour = \{-\/1, -\/1\}}
+
+Whether this user account is currently active \Hypertarget{struct_user__s_a93e353b3bf6c3809388b7f3f2de0235d}\label{struct_user__s_a93e353b3bf6c3809388b7f3f2de0235d} 
+\index{User\_s@{User\_s}!tag\_id@{tag\_id}}
+\index{tag\_id@{tag\_id}!User\_s@{User\_s}}
+\doxysubsubsection{\texorpdfstring{tag\_id}{tag\_id}}
+{\footnotesize\ttfamily byte User\+\_\+s\+::tag\+\_\+id\mbox{[}7\mbox{]} \{\}}
+
+User\textquotesingle{}s name or identifier 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Periphérique\+\_\+et\+\_\+microcontroler/include/\mbox{\hyperlink{main_8h}{main.\+h}}\end{DoxyCompactItemize}

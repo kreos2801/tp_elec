@@ -1,0 +1,1562 @@
+\doxysection{STM32\+RTC Class Reference}
+\hypertarget{class_s_t_m32_r_t_c}{}\label{class_s_t_m32_r_t_c}\index{STM32RTC@{STM32RTC}}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_s_t_m32_r_t_c_af8aee727f80ebe785b28e88b00ddea29}\label{class_s_t_m32_r_t_c_af8aee727f80ebe785b28e88b00ddea29} 
+enum {\bfseries Hour\+\_\+\+Format} \+: uint8\+\_\+t \{ {\bfseries HOUR\+\_\+12} = HOUR\+\_\+\+FORMAT\+\_\+12
+, {\bfseries HOUR\+\_\+24} = HOUR\+\_\+\+FORMAT\+\_\+24
+ \}
+\item 
+\Hypertarget{class_s_t_m32_r_t_c_ac833f49c8e9f1ca5d2fe6050e9baa438}\label{class_s_t_m32_r_t_c_ac833f49c8e9f1ca5d2fe6050e9baa438} 
+enum {\bfseries AM\+\_\+\+PM} \+: uint8\+\_\+t \{ {\bfseries AM} = HOUR\+\_\+\+AM
+, {\bfseries PM} = HOUR\+\_\+\+PM
+ \}
+\item 
+\Hypertarget{class_s_t_m32_r_t_c_a2ce135d4003aaa4c5bbb99b6dc049507}\label{class_s_t_m32_r_t_c_a2ce135d4003aaa4c5bbb99b6dc049507} 
+enum {\bfseries Binary\+\_\+\+Mode} \+: uint8\+\_\+t \{ {\bfseries MODE\+\_\+\+BCD} = MODE\+\_\+\+BINARY\+\_\+\+NONE
+, {\bfseries MODE\+\_\+\+BIN} = MODE\+\_\+\+BINARY\+\_\+\+ONLY
+, {\bfseries MODE\+\_\+\+MIX} = MODE\+\_\+\+BINARY\+\_\+\+MIX
+ \}
+\item 
+\Hypertarget{class_s_t_m32_r_t_c_ad4dc9f094b61fa18e8a0379b7282d526}\label{class_s_t_m32_r_t_c_ad4dc9f094b61fa18e8a0379b7282d526} 
+enum {\bfseries Alarm\+\_\+\+Match} \+: uint8\+\_\+t \{ \newline
+{\bfseries MATCH\+\_\+\+OFF} = OFF\+\_\+\+MSK
+, {\bfseries MATCH\+\_\+\+SUBSEC} = SUBSEC\+\_\+\+MSK
+, {\bfseries MATCH\+\_\+\+SS} = SS\+\_\+\+MSK
+, {\bfseries MATCH\+\_\+\+MMSS} = SS\+\_\+\+MSK \texorpdfstring{$\vert$}{|} MM\+\_\+\+MSK
+, \newline
+{\bfseries MATCH\+\_\+\+HHMMSS} = SS\+\_\+\+MSK \texorpdfstring{$\vert$}{|} MM\+\_\+\+MSK \texorpdfstring{$\vert$}{|} HH\+\_\+\+MSK
+, {\bfseries MATCH\+\_\+\+DHHMMSS} = SS\+\_\+\+MSK \texorpdfstring{$\vert$}{|} MM\+\_\+\+MSK \texorpdfstring{$\vert$}{|} HH\+\_\+\+MSK \texorpdfstring{$\vert$}{|} D\+\_\+\+MSK
+, {\bfseries MATCH\+\_\+\+MMDDHHMMSS} = SS\+\_\+\+MSK \texorpdfstring{$\vert$}{|} MM\+\_\+\+MSK \texorpdfstring{$\vert$}{|} HH\+\_\+\+MSK \texorpdfstring{$\vert$}{|} D\+\_\+\+MSK \texorpdfstring{$\vert$}{|} M\+\_\+\+MSK
+, {\bfseries MATCH\+\_\+\+YYMMDDHHMMSS} = SS\+\_\+\+MSK \texorpdfstring{$\vert$}{|} MM\+\_\+\+MSK \texorpdfstring{$\vert$}{|} HH\+\_\+\+MSK \texorpdfstring{$\vert$}{|} D\+\_\+\+MSK \texorpdfstring{$\vert$}{|} M\+\_\+\+MSK \texorpdfstring{$\vert$}{|} Y\+\_\+\+MSK
+ \}
+\item 
+\Hypertarget{class_s_t_m32_r_t_c_aa049a2613af58279b3ac53d6fe40fa8d}\label{class_s_t_m32_r_t_c_aa049a2613af58279b3ac53d6fe40fa8d} 
+enum {\bfseries Source\+\_\+\+Clock} \+: uint8\+\_\+t \{ {\bfseries LSI\+\_\+\+CLOCK} = \+::LSI\+\_\+\+CLOCK
+, {\bfseries LSE\+\_\+\+CLOCK} = \+::LSE\+\_\+\+CLOCK
+, {\bfseries HSE\+\_\+\+CLOCK} = \+::HSE\+\_\+\+CLOCK
+ \}
+\item 
+\Hypertarget{class_s_t_m32_r_t_c_a2d992863630573a4fef354ce2d686d7d}\label{class_s_t_m32_r_t_c_a2d992863630573a4fef354ce2d686d7d} 
+enum {\bfseries Alarm} \+: uint32\+\_\+t \{ {\bfseries ALARM\+\_\+A} = \+::ALARM\+\_\+A
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_s_t_m32_r_t_c_adb05beecbe1c3d69a6128aae89dcc657}\label{class_s_t_m32_r_t_c_adb05beecbe1c3d69a6128aae89dcc657} 
+{\bfseries STM32\+RTC} (\mbox{\hyperlink{class_s_t_m32_r_t_c}{STM32\+RTC}} const \&)=delete
+\item 
+\Hypertarget{class_s_t_m32_r_t_c_a751dccb863c35fc545ffab6b0f18a3fb}\label{class_s_t_m32_r_t_c_a751dccb863c35fc545ffab6b0f18a3fb} 
+void {\bfseries operator=} (\mbox{\hyperlink{class_s_t_m32_r_t_c}{STM32\+RTC}} const \&)=delete
+\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_ac9a9e5c8f1c3435ce810f97a032d558e}{begin}} (bool reset\+Time, Hour\+\_\+\+Format format=HOUR\+\_\+24)
+\begin{DoxyCompactList}\small\item\em initializes the RTC \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_ac05438c1fe6b4c97d75eb6b22fb59700}{begin}} (Hour\+\_\+\+Format format=HOUR\+\_\+24)
+\begin{DoxyCompactList}\small\item\em initializes the RTC \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_adf77f161a21517d4660d00be9545628d}{end}} (void)
+\begin{DoxyCompactList}\small\item\em Deinitialize and stop the RTC. \end{DoxyCompactList}\item 
+\Hypertarget{class_s_t_m32_r_t_c_a9076b9a743dd3ab17f05889898dc08ad}\label{class_s_t_m32_r_t_c_a9076b9a743dd3ab17f05889898dc08ad} 
+RTC\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*} {\bfseries get\+Handle} (void)
+\item 
+Source\+\_\+\+Clock \mbox{\hyperlink{class_s_t_m32_r_t_c_aca82abffbda863377e7eb152721dfe9e}{get\+Clock\+Source}} (void)
+\begin{DoxyCompactList}\small\item\em get the RTC clock source. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_a643642658b5f008f325c47e2149cf1f6}{set\+Clock\+Source}} (Source\+\_\+\+Clock source, uint32\+\_\+t predivA=(PREDIVA\+\_\+\+MAX+1), uint32\+\_\+t predivS=(PREDIVS\+\_\+\+MAX+1))
+\begin{DoxyCompactList}\small\item\em set the RTC clock source and user (a)synchronous prescalers values. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_ab9ac6bb1e31c9592ec34df95f47fd398}{get\+Prediv}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}predivA, uint32\+\_\+t \texorpdfstring{$\ast$}{*}predivS)
+\begin{DoxyCompactList}\small\item\em get user (a)synchronous prescaler values if set else computed ones for the current clock source. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_acf948890167f1b7d54a4fb57a9b4147b}{set\+Prediv}} (uint32\+\_\+t predivA, uint32\+\_\+t predivS)
+\begin{DoxyCompactList}\small\item\em set user (a)synchronous prescalers values. \end{DoxyCompactList}\item 
+Binary\+\_\+\+Mode \mbox{\hyperlink{class_s_t_m32_r_t_c_abdea823b17b49107284c615a4aa58dab}{get\+Binary\+Mode}} (void)
+\begin{DoxyCompactList}\small\item\em get the Binary Mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_a2c1bfbe84be7f5a73f48ebf8f0c137ea}{set\+Binary\+Mode}} (Binary\+\_\+\+Mode mode)
+\begin{DoxyCompactList}\small\item\em set the Binary Mode. By default MODE\+\_\+\+BCD is selected. This method must be called before \doxylink{class_s_t_m32_r_t_c_ac9a9e5c8f1c3435ce810f97a032d558e}{begin()}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_afac46f3b1ba34a56d86fdd4dca26d0f4}{enable\+Alarm}} (Alarm\+\_\+\+Match match, Alarm name=ALARM\+\_\+A)
+\begin{DoxyCompactList}\small\item\em enable the RTC alarm. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_a10b88ec2cbfcebf53aea24d808d5168a}{disable\+Alarm}} (Alarm name=ALARM\+\_\+A)
+\begin{DoxyCompactList}\small\item\em disable the RTC alarm. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_adcd5814091cef21194dd142ac25eb9ee}{attach\+Interrupt}} (void\+Func\+Ptr callback, Alarm name)
+\begin{DoxyCompactList}\small\item\em attach a callback to the RTC alarm interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_ab94218af9cd43ef50b07fd870fe19328}{attach\+Interrupt}} (void\+Func\+Ptr callback, void \texorpdfstring{$\ast$}{*}data=nullptr, Alarm name=ALARM\+\_\+A)
+\begin{DoxyCompactList}\small\item\em attach a callback to the RTC alarm interrupt. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_a0cf8238811865b86a5a9bdfbc74decdd}{detach\+Interrupt}} (Alarm name=ALARM\+\_\+A)
+\begin{DoxyCompactList}\small\item\em detach the RTC alarm callback. \end{DoxyCompactList}\item 
+\Hypertarget{class_s_t_m32_r_t_c_af93ffbc917ef9de3eacd4c34bb4cdf66}\label{class_s_t_m32_r_t_c_af93ffbc917ef9de3eacd4c34bb4cdf66} 
+void {\bfseries standby\+Mode} ()
+\item 
+uint32\+\_\+t \mbox{\hyperlink{class_s_t_m32_r_t_c_a0df1d5be2b884f9776a0a6b3936523cf}{get\+Sub\+Seconds}} (void)
+\begin{DoxyCompactList}\small\item\em get RTC subseconds. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_s_t_m32_r_t_c_a66cc945dd4726a15d77f883df6e161fa}{get\+Seconds}} (void)
+\begin{DoxyCompactList}\small\item\em get RTC seconds. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_s_t_m32_r_t_c_a96b35580f3664c9e6b9343d4563d8e95}{get\+Minutes}} (void)
+\begin{DoxyCompactList}\small\item\em get RTC minutes. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_s_t_m32_r_t_c_a82fc997ec0127ae82da944e4aab88ec1}{get\+Hours}} (AM\+\_\+\+PM \texorpdfstring{$\ast$}{*}period=nullptr)
+\begin{DoxyCompactList}\small\item\em get RTC hours. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_a0d16803c48b852482ff57bcb002db456}{get\+Time}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}hours, uint8\+\_\+t \texorpdfstring{$\ast$}{*}minutes, uint8\+\_\+t \texorpdfstring{$\ast$}{*}seconds, uint32\+\_\+t \texorpdfstring{$\ast$}{*}sub\+Seconds, AM\+\_\+\+PM \texorpdfstring{$\ast$}{*}period=nullptr)
+\begin{DoxyCompactList}\small\item\em get RTC time. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_s_t_m32_r_t_c_a60c0a4a745ee54d353980f07b373615f}{get\+Week\+Day}} (void)
+\begin{DoxyCompactList}\small\item\em get RTC week day. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_s_t_m32_r_t_c_a3720019932e10b27c405f48287707193}{get\+Day}} (void)
+\begin{DoxyCompactList}\small\item\em get RTC day. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_s_t_m32_r_t_c_afaed12ad74110169b130c732b70af9e2}{get\+Month}} (void)
+\begin{DoxyCompactList}\small\item\em get RTC month. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_s_t_m32_r_t_c_a450f9f2dae379c2ecdf62acb2838e199}{get\+Year}} (void)
+\begin{DoxyCompactList}\small\item\em get RTC year. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_ab2ec9433905c4bf1040c4a94b1802716}{get\+Date}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}week\+Day, uint8\+\_\+t \texorpdfstring{$\ast$}{*}day, uint8\+\_\+t \texorpdfstring{$\ast$}{*}month, uint8\+\_\+t \texorpdfstring{$\ast$}{*}year)
+\begin{DoxyCompactList}\small\item\em get RTC time. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{class_s_t_m32_r_t_c_a7b898ab0b8b52047c7e254afc8af3aaf}{get\+Alarm\+Sub\+Seconds}} (Alarm name=ALARM\+\_\+A)
+\begin{DoxyCompactList}\small\item\em get RTC alarm subsecond. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_s_t_m32_r_t_c_aebd6db9c5123181d9a0341a3b8f3e179}{get\+Alarm\+Seconds}} (Alarm name=ALARM\+\_\+A)
+\begin{DoxyCompactList}\small\item\em get RTC alarm second. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_s_t_m32_r_t_c_ae0b6e086fe78a4398879b4039f1b6c50}{get\+Alarm\+Minutes}} (Alarm name=ALARM\+\_\+A)
+\begin{DoxyCompactList}\small\item\em get RTC alarm minute. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_s_t_m32_r_t_c_aac92363e999a108b4210f81fbb483ad5}{get\+Alarm\+Hours}} (Alarm name)
+\begin{DoxyCompactList}\small\item\em get RTC alarm hour. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_s_t_m32_r_t_c_a9894663218217b826eb87f16f032433d}{get\+Alarm\+Hours}} (AM\+\_\+\+PM \texorpdfstring{$\ast$}{*}period=nullptr, Alarm name=ALARM\+\_\+A)
+\begin{DoxyCompactList}\small\item\em get RTC alarm hour. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_s_t_m32_r_t_c_a008a78ed36456b67fe5797209a3db86c}{get\+Alarm\+Day}} (Alarm name=ALARM\+\_\+A)
+\begin{DoxyCompactList}\small\item\em get RTC alarm day. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_s_t_m32_r_t_c_a6b99b1cfaea732de0669baf15a70dd7f}{get\+Alarm\+Month}} (void)
+\begin{DoxyCompactList}\small\item\em get RTC alarm month. @\+NOTE This function is kept for compatibility but the STM32 RTC can\textquotesingle{}t assign a month to an alarm. See board datasheet. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_s_t_m32_r_t_c_a60f7aabdb48c10f0c87e99511b63fce0}{get\+Alarm\+Year}} (void)
+\begin{DoxyCompactList}\small\item\em get RTC alarm year. @\+NOTE This function is kept for compatibility but the STM32 RTC can\textquotesingle{}t assign a year to an alarm. See board datasheet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_a7587f7ef21bff0ba4b3064c904714421}{set\+Sub\+Seconds}} (uint32\+\_\+t sub\+Seconds)
+\begin{DoxyCompactList}\small\item\em set RTC subseconds. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_a92a1e8f507d81da11536d6830eb3526c}{set\+Seconds}} (uint8\+\_\+t seconds)
+\begin{DoxyCompactList}\small\item\em set RTC seconds. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_aac020fa0b2694161134a51f4494e42ee}{set\+Minutes}} (uint8\+\_\+t minutes)
+\begin{DoxyCompactList}\small\item\em set RTC minutes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_a8b63ef8d27d7c186d81939cf7c1a337b}{set\+Hours}} (uint8\+\_\+t hours, AM\+\_\+\+PM period=AM)
+\begin{DoxyCompactList}\small\item\em set RTC hours. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_a191c32ccc23e457f2709ef7498f168c4}{set\+Time}} (uint8\+\_\+t hours, uint8\+\_\+t minutes, uint8\+\_\+t seconds, uint32\+\_\+t sub\+Seconds=1000, AM\+\_\+\+PM period=AM)
+\begin{DoxyCompactList}\small\item\em set RTC time. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_a30a1ced58fe417a0dda1c928bf095d12}{set\+Week\+Day}} (uint8\+\_\+t week\+Day)
+\begin{DoxyCompactList}\small\item\em set RTC week day. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_ab0e6dbbde607d49d5ab3f1cb3bca03da}{set\+Day}} (uint8\+\_\+t day)
+\begin{DoxyCompactList}\small\item\em set RTC day. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_aa99614b3b04db0b8e1817a2b2ee242c1}{set\+Month}} (uint8\+\_\+t month)
+\begin{DoxyCompactList}\small\item\em set RTC month. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_a824d3f999a88a7d0ce804d8065b936e1}{set\+Year}} (uint8\+\_\+t year)
+\begin{DoxyCompactList}\small\item\em set RTC year. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_ae0699553d093b85157cfe50b308f8053}{set\+Date}} (uint8\+\_\+t day, uint8\+\_\+t month, uint8\+\_\+t year)
+\begin{DoxyCompactList}\small\item\em set RTC calendar. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_af0134446f5c31456a8903707dc31143f}{set\+Date}} (uint8\+\_\+t week\+Day, uint8\+\_\+t day, uint8\+\_\+t month, uint8\+\_\+t year)
+\begin{DoxyCompactList}\small\item\em set RTC calendar. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_a498681e92c46ba10276d7ea340c4a41c}{set\+Alarm\+Sub\+Seconds}} (uint32\+\_\+t sub\+Seconds, Alarm name=ALARM\+\_\+A)
+\begin{DoxyCompactList}\small\item\em set RTC alarm subseconds. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_a58d9e64af5b01d0cbf78de8b507d79e9}{set\+Alarm\+Seconds}} (uint8\+\_\+t seconds, Alarm name=ALARM\+\_\+A)
+\begin{DoxyCompactList}\small\item\em set RTC alarm second. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_ab981fcf52f328d4a153ac21a784657f7}{set\+Alarm\+Minutes}} (uint8\+\_\+t minutes, Alarm name=ALARM\+\_\+A)
+\begin{DoxyCompactList}\small\item\em set RTC alarm minute. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_ab2a06d447fb9b52044a76c33ea8d4ffa}{set\+Alarm\+Hours}} (uint8\+\_\+t hours, Alarm name)
+\begin{DoxyCompactList}\small\item\em set RTC alarm hour. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_a3c92212c8d5b56dc6fc072c497157dfb}{set\+Alarm\+Hours}} (uint8\+\_\+t hours, AM\+\_\+\+PM period=AM, Alarm name=ALARM\+\_\+A)
+\begin{DoxyCompactList}\small\item\em set RTC alarm hour. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_afc58f0500fdcdb80d1e6953f78ea1b81}{set\+Alarm\+Time}} (uint32\+\_\+t sub\+Seconds, Alarm name=ALARM\+\_\+A)
+\begin{DoxyCompactList}\small\item\em set RTC alarm time. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_aa937c6bfd1a97a4c5a1c54c4fa201408}{set\+Alarm\+Time}} (uint8\+\_\+t hours, uint8\+\_\+t minutes, uint8\+\_\+t seconds, Alarm name)
+\begin{DoxyCompactList}\small\item\em set RTC alarm time. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_a2794e6f088d9a558661f3eacf3856d0d}{set\+Alarm\+Time}} (uint8\+\_\+t hours, uint8\+\_\+t minutes, uint8\+\_\+t seconds, uint32\+\_\+t sub\+Seconds, Alarm name)
+\begin{DoxyCompactList}\small\item\em set RTC alarm time. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_a0ad7fbf4016ff47cf55c1b55e9f053d8}{set\+Alarm\+Time}} (uint8\+\_\+t hours, uint8\+\_\+t minutes, uint8\+\_\+t seconds, uint32\+\_\+t sub\+Seconds=0, AM\+\_\+\+PM period=AM, Alarm name=ALARM\+\_\+A)
+\begin{DoxyCompactList}\small\item\em set RTC alarm time. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_a02cbce8c6dd4d601ba8b183afccb0c2d}{set\+Alarm\+Day}} (uint8\+\_\+t day, Alarm name=ALARM\+\_\+A)
+\begin{DoxyCompactList}\small\item\em set RTC alarm day. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_ad6c1b1aea783ea4b763d82b55d36361b}{set\+Alarm\+Month}} (uint8\+\_\+t month)
+\begin{DoxyCompactList}\small\item\em set RTC alarm month. @\+NOTE This function is kept for compatibility but the STM32 RTC can\textquotesingle{}t assign a month to an alarm. See board datasheet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_a87581e7c78c5b508327f134bac0bff52}{set\+Alarm\+Year}} (uint8\+\_\+t year)
+\begin{DoxyCompactList}\small\item\em set RTC alarm year. @\+NOTE This function is kept for compatibility but the STM32 RTC can\textquotesingle{}t assign a year to an alarm. See board datasheet. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_a0c88c9d5c82b3a6baaaa8478671bc133}{set\+Alarm\+Date}} (uint8\+\_\+t day, uint8\+\_\+t month, uint8\+\_\+t year, Alarm name=ALARM\+\_\+A)
+\begin{DoxyCompactList}\small\item\em set RTC alarm date. @\+NOTE Parameters month and year are ignored because the STM32 RTC can\textquotesingle{}t assign a month or year to an alarm. See board datasheet. \end{DoxyCompactList}\item 
+time\+\_\+t \mbox{\hyperlink{class_s_t_m32_r_t_c_a99375e4a80115c82d250a4132fdf98f4}{get\+Epoch}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}sub\+Seconds=nullptr)
+\begin{DoxyCompactList}\small\item\em get epoch time \end{DoxyCompactList}\item 
+time\+\_\+t \mbox{\hyperlink{class_s_t_m32_r_t_c_afe9695fa02b6dde39c7f113049756bc0}{get\+Y2k\+Epoch}} (void)
+\begin{DoxyCompactList}\small\item\em get epoch time since 1st January 2000, 00\+:00\+:00 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_ac63a376c5138b0cd59b00b02673b30b1}{set\+Epoch}} (time\+\_\+t ts, uint32\+\_\+t sub\+Seconds=0)
+\begin{DoxyCompactList}\small\item\em set RTC time from epoch time \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_aeceb8915ede13e0f1ef64122e19baec9}{set\+Y2k\+Epoch}} (time\+\_\+t ts)
+\begin{DoxyCompactList}\small\item\em set RTC time from epoch time since 1st January 2000, 00\+:00\+:00 \end{DoxyCompactList}\item 
+time\+\_\+t \mbox{\hyperlink{class_s_t_m32_r_t_c_aae824ebd121409da05bd77a575a2aa99}{get\+Alarm\+Epoch}} (Alarm name)
+\begin{DoxyCompactList}\small\item\em get alarm epoch time \end{DoxyCompactList}\item 
+time\+\_\+t \mbox{\hyperlink{class_s_t_m32_r_t_c_afa90531e62d4bf849982cb05ebf880e0}{get\+Alarm\+Epoch}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}sub\+Seconds=nullptr, Alarm name=ALARM\+\_\+A)
+\begin{DoxyCompactList}\small\item\em get alarm epoch time \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_a94bb952de6a52b6eb57d48061c11a890}{set\+Alarm\+Epoch}} (time\+\_\+t ts, Alarm\+\_\+\+Match match, Alarm name)
+\begin{DoxyCompactList}\small\item\em set RTC alarm from epoch time \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_s_t_m32_r_t_c_a539e587dee2bbb18e8c1a4b7ab4347e3}{set\+Alarm\+Epoch}} (time\+\_\+t ts, Alarm\+\_\+\+Match match=MATCH\+\_\+\+DHHMMSS, uint32\+\_\+t sub\+Seconds=0, Alarm name=ALARM\+\_\+A)
+\begin{DoxyCompactList}\small\item\em set RTC alarm from epoch time \end{DoxyCompactList}\item 
+\Hypertarget{class_s_t_m32_r_t_c_a5f1a563d08fce682c8edb95fe8871f0c}\label{class_s_t_m32_r_t_c_a5f1a563d08fce682c8edb95fe8871f0c} 
+bool {\bfseries is\+Configured} (void)
+\item 
+\Hypertarget{class_s_t_m32_r_t_c_a5d84075c9d289242a942e865f30d860f}\label{class_s_t_m32_r_t_c_a5d84075c9d289242a942e865f30d860f} 
+bool {\bfseries is\+Format\+\_\+24hour} (void)
+\item 
+bool \mbox{\hyperlink{class_s_t_m32_r_t_c_a17a7d0169a0f0dcdc00375e3a76f6e9e}{is\+Alarm\+Enabled}} (Alarm name=ALARM\+\_\+A)
+\begin{DoxyCompactList}\small\item\em Check whether RTC alarm is set. \end{DoxyCompactList}\item 
+\Hypertarget{class_s_t_m32_r_t_c_af1a40d25f5ddc3045703df05d28b2459}\label{class_s_t_m32_r_t_c_af1a40d25f5ddc3045703df05d28b2459} 
+bool {\bfseries is\+Time\+Set} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_s_t_m32_r_t_c_ab50ac8470dc457d2aba61d30d611ba13}\label{class_s_t_m32_r_t_c_ab50ac8470dc457d2aba61d30d611ba13} 
+static \mbox{\hyperlink{class_s_t_m32_r_t_c}{STM32\+RTC}} \& {\bfseries get\+Instance} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_s_t_m32_r_t_c_aa6273900d14d5fb65e801c7a52c840f5}\label{class_s_t_m32_r_t_c_aa6273900d14d5fb65e801c7a52c840f5} 
+class {\bfseries STM32\+Low\+Power}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_s_t_m32_r_t_c_adcd5814091cef21194dd142ac25eb9ee}\label{class_s_t_m32_r_t_c_adcd5814091cef21194dd142ac25eb9ee} 
+\index{STM32RTC@{STM32RTC}!attachInterrupt@{attachInterrupt}}
+\index{attachInterrupt@{attachInterrupt}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{attachInterrupt()}{attachInterrupt()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void STM32\+RTC\+::attach\+Interrupt (\begin{DoxyParamCaption}\item[{void\+Func\+Ptr}]{callback,  }\item[{Alarm}]{name }\end{DoxyParamCaption})}
+
+
+
+attach a callback to the RTC alarm interrupt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & pointer to the callback \\
+\hline
+{\em name} & optional (default\+: ALARM\+\_\+A) ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_ab94218af9cd43ef50b07fd870fe19328}\label{class_s_t_m32_r_t_c_ab94218af9cd43ef50b07fd870fe19328} 
+\index{STM32RTC@{STM32RTC}!attachInterrupt@{attachInterrupt}}
+\index{attachInterrupt@{attachInterrupt}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{attachInterrupt()}{attachInterrupt()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void STM32\+RTC\+::attach\+Interrupt (\begin{DoxyParamCaption}\item[{void\+Func\+Ptr}]{callback,  }\item[{void \texorpdfstring{$\ast$}{*}}]{data = {\ttfamily nullptr},  }\item[{Alarm}]{name = {\ttfamily ALARM\+\_\+A} }\end{DoxyParamCaption})}
+
+
+
+attach a callback to the RTC alarm interrupt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback} & pointer to the callback \\
+\hline
+{\em data} & pointer to callback argument if any (default\+: nullptr) \\
+\hline
+{\em name} & optional (default\+: ALARM\+\_\+A) ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_ac9a9e5c8f1c3435ce810f97a032d558e}\label{class_s_t_m32_r_t_c_ac9a9e5c8f1c3435ce810f97a032d558e} 
+\index{STM32RTC@{STM32RTC}!begin@{begin}}
+\index{begin@{begin}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void STM32\+RTC\+::begin (\begin{DoxyParamCaption}\item[{bool}]{reset\+Time,  }\item[{Hour\+\_\+\+Format}]{format = {\ttfamily HOUR\+\_\+24} }\end{DoxyParamCaption})}
+
+
+
+initializes the RTC 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reset\+Time} & if true reconfigures the RTC \\
+\hline
+{\em format} & hour format\+: HOUR\+\_\+12 or HOUR\+\_\+24(default) \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_ac05438c1fe6b4c97d75eb6b22fb59700}\label{class_s_t_m32_r_t_c_ac05438c1fe6b4c97d75eb6b22fb59700} 
+\index{STM32RTC@{STM32RTC}!begin@{begin}}
+\index{begin@{begin}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void STM32\+RTC\+::begin (\begin{DoxyParamCaption}\item[{Hour\+\_\+\+Format}]{format = {\ttfamily HOUR\+\_\+24} }\end{DoxyParamCaption})}
+
+
+
+initializes the RTC 
+
+
+\begin{DoxyParams}{Parameters}
+{\em format} & hour format\+: HOUR\+\_\+12 or HOUR\+\_\+24(default) \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a0cf8238811865b86a5a9bdfbc74decdd}\label{class_s_t_m32_r_t_c_a0cf8238811865b86a5a9bdfbc74decdd} 
+\index{STM32RTC@{STM32RTC}!detachInterrupt@{detachInterrupt}}
+\index{detachInterrupt@{detachInterrupt}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{detachInterrupt()}{detachInterrupt()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::detach\+Interrupt (\begin{DoxyParamCaption}\item[{Alarm}]{name = {\ttfamily ALARM\+\_\+A} }\end{DoxyParamCaption})}
+
+
+
+detach the RTC alarm callback. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & optional (default\+: ALARM\+\_\+A) ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a10b88ec2cbfcebf53aea24d808d5168a}\label{class_s_t_m32_r_t_c_a10b88ec2cbfcebf53aea24d808d5168a} 
+\index{STM32RTC@{STM32RTC}!disableAlarm@{disableAlarm}}
+\index{disableAlarm@{disableAlarm}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{disableAlarm()}{disableAlarm()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::disable\+Alarm (\begin{DoxyParamCaption}\item[{Alarm}]{name = {\ttfamily ALARM\+\_\+A} }\end{DoxyParamCaption})}
+
+
+
+disable the RTC alarm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & optional (default\+: ALARM\+\_\+A) ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_afac46f3b1ba34a56d86fdd4dca26d0f4}\label{class_s_t_m32_r_t_c_afac46f3b1ba34a56d86fdd4dca26d0f4} 
+\index{STM32RTC@{STM32RTC}!enableAlarm@{enableAlarm}}
+\index{enableAlarm@{enableAlarm}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{enableAlarm()}{enableAlarm()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::enable\+Alarm (\begin{DoxyParamCaption}\item[{Alarm\+\_\+\+Match}]{match,  }\item[{Alarm}]{name = {\ttfamily ALARM\+\_\+A} }\end{DoxyParamCaption})}
+
+
+
+enable the RTC alarm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em match} & Alarm\+\_\+\+Match configuration \\
+\hline
+{\em name} & optional (default\+: ALARM\+\_\+A) ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_adf77f161a21517d4660d00be9545628d}\label{class_s_t_m32_r_t_c_adf77f161a21517d4660d00be9545628d} 
+\index{STM32RTC@{STM32RTC}!end@{end}}
+\index{end@{end}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::end (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Deinitialize and stop the RTC. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a008a78ed36456b67fe5797209a3db86c}\label{class_s_t_m32_r_t_c_a008a78ed36456b67fe5797209a3db86c} 
+\index{STM32RTC@{STM32RTC}!getAlarmDay@{getAlarmDay}}
+\index{getAlarmDay@{getAlarmDay}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getAlarmDay()}{getAlarmDay()}}
+{\footnotesize\ttfamily uint8\+\_\+t STM32\+RTC\+::get\+Alarm\+Day (\begin{DoxyParamCaption}\item[{Alarm}]{name = {\ttfamily ALARM\+\_\+A} }\end{DoxyParamCaption})}
+
+
+
+get RTC alarm day. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & optional (default\+: ALARM\+\_\+A) ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em return} & the current alarm day. \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_aae824ebd121409da05bd77a575a2aa99}\label{class_s_t_m32_r_t_c_aae824ebd121409da05bd77a575a2aa99} 
+\index{STM32RTC@{STM32RTC}!getAlarmEpoch@{getAlarmEpoch}}
+\index{getAlarmEpoch@{getAlarmEpoch}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getAlarmEpoch()}{getAlarmEpoch()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily time\+\_\+t STM32\+RTC\+::get\+Alarm\+Epoch (\begin{DoxyParamCaption}\item[{Alarm}]{name }\end{DoxyParamCaption})}
+
+
+
+get alarm epoch time 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em epoch} & time in seconds \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_afa90531e62d4bf849982cb05ebf880e0}\label{class_s_t_m32_r_t_c_afa90531e62d4bf849982cb05ebf880e0} 
+\index{STM32RTC@{STM32RTC}!getAlarmEpoch@{getAlarmEpoch}}
+\index{getAlarmEpoch@{getAlarmEpoch}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getAlarmEpoch()}{getAlarmEpoch()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily time\+\_\+t STM32\+RTC\+::get\+Alarm\+Epoch (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{sub\+Seconds = {\ttfamily nullptr},  }\item[{Alarm}]{name = {\ttfamily ALARM\+\_\+A} }\end{DoxyParamCaption})}
+
+
+
+get alarm epoch time 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sub\+Seconds} & optional pointer to where to store subseconds of the epoch in ms \\
+\hline
+{\em name} & optional (default\+: ALARM\+\_\+A) ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em epoch} & time in seconds \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_aac92363e999a108b4210f81fbb483ad5}\label{class_s_t_m32_r_t_c_aac92363e999a108b4210f81fbb483ad5} 
+\index{STM32RTC@{STM32RTC}!getAlarmHours@{getAlarmHours}}
+\index{getAlarmHours@{getAlarmHours}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getAlarmHours()}{getAlarmHours()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily uint8\+\_\+t STM32\+RTC\+::get\+Alarm\+Hours (\begin{DoxyParamCaption}\item[{Alarm}]{name }\end{DoxyParamCaption})}
+
+
+
+get RTC alarm hour. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & optional (default\+: ALARM\+\_\+A) ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em return} & the current alarm hour. \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a9894663218217b826eb87f16f032433d}\label{class_s_t_m32_r_t_c_a9894663218217b826eb87f16f032433d} 
+\index{STM32RTC@{STM32RTC}!getAlarmHours@{getAlarmHours}}
+\index{getAlarmHours@{getAlarmHours}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getAlarmHours()}{getAlarmHours()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily uint8\+\_\+t STM32\+RTC\+::get\+Alarm\+Hours (\begin{DoxyParamCaption}\item[{AM\+\_\+\+PM \texorpdfstring{$\ast$}{*}}]{period = {\ttfamily nullptr},  }\item[{Alarm}]{name = {\ttfamily ALARM\+\_\+A} }\end{DoxyParamCaption})}
+
+
+
+get RTC alarm hour. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em format} & optional (default\+: nullptr) pointer to the current hour format set in the RTC\+: AM or PM \\
+\hline
+{\em name} & optional (default\+: ALARM\+\_\+A) ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em return} & the current alarm hour. \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_ae0b6e086fe78a4398879b4039f1b6c50}\label{class_s_t_m32_r_t_c_ae0b6e086fe78a4398879b4039f1b6c50} 
+\index{STM32RTC@{STM32RTC}!getAlarmMinutes@{getAlarmMinutes}}
+\index{getAlarmMinutes@{getAlarmMinutes}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getAlarmMinutes()}{getAlarmMinutes()}}
+{\footnotesize\ttfamily uint8\+\_\+t STM32\+RTC\+::get\+Alarm\+Minutes (\begin{DoxyParamCaption}\item[{Alarm}]{name = {\ttfamily ALARM\+\_\+A} }\end{DoxyParamCaption})}
+
+
+
+get RTC alarm minute. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & optional (default\+: ALARM\+\_\+A) ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em return} & the current alarm minute. \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a6b99b1cfaea732de0669baf15a70dd7f}\label{class_s_t_m32_r_t_c_a6b99b1cfaea732de0669baf15a70dd7f} 
+\index{STM32RTC@{STM32RTC}!getAlarmMonth@{getAlarmMonth}}
+\index{getAlarmMonth@{getAlarmMonth}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getAlarmMonth()}{getAlarmMonth()}}
+{\footnotesize\ttfamily uint8\+\_\+t STM32\+RTC\+::get\+Alarm\+Month (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+get RTC alarm month. @\+NOTE This function is kept for compatibility but the STM32 RTC can\textquotesingle{}t assign a month to an alarm. See board datasheet. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em always} & returns 0 \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_aebd6db9c5123181d9a0341a3b8f3e179}\label{class_s_t_m32_r_t_c_aebd6db9c5123181d9a0341a3b8f3e179} 
+\index{STM32RTC@{STM32RTC}!getAlarmSeconds@{getAlarmSeconds}}
+\index{getAlarmSeconds@{getAlarmSeconds}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getAlarmSeconds()}{getAlarmSeconds()}}
+{\footnotesize\ttfamily uint8\+\_\+t STM32\+RTC\+::get\+Alarm\+Seconds (\begin{DoxyParamCaption}\item[{Alarm}]{name = {\ttfamily ALARM\+\_\+A} }\end{DoxyParamCaption})}
+
+
+
+get RTC alarm second. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & optional (default\+: ALARM\+\_\+A) ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em return} & the current alarm second. \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a7b898ab0b8b52047c7e254afc8af3aaf}\label{class_s_t_m32_r_t_c_a7b898ab0b8b52047c7e254afc8af3aaf} 
+\index{STM32RTC@{STM32RTC}!getAlarmSubSeconds@{getAlarmSubSeconds}}
+\index{getAlarmSubSeconds@{getAlarmSubSeconds}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getAlarmSubSeconds()}{getAlarmSubSeconds()}}
+{\footnotesize\ttfamily uint32\+\_\+t STM32\+RTC\+::get\+Alarm\+Sub\+Seconds (\begin{DoxyParamCaption}\item[{Alarm}]{name = {\ttfamily ALARM\+\_\+A} }\end{DoxyParamCaption})}
+
+
+
+get RTC alarm subsecond. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & optional (default\+: ALARM\+\_\+A) ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em return} & the current alarm subsecond. \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a60f7aabdb48c10f0c87e99511b63fce0}\label{class_s_t_m32_r_t_c_a60f7aabdb48c10f0c87e99511b63fce0} 
+\index{STM32RTC@{STM32RTC}!getAlarmYear@{getAlarmYear}}
+\index{getAlarmYear@{getAlarmYear}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getAlarmYear()}{getAlarmYear()}}
+{\footnotesize\ttfamily uint8\+\_\+t STM32\+RTC\+::get\+Alarm\+Year (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+get RTC alarm year. @\+NOTE This function is kept for compatibility but the STM32 RTC can\textquotesingle{}t assign a year to an alarm. See board datasheet. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em always} & returns 0 \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_abdea823b17b49107284c615a4aa58dab}\label{class_s_t_m32_r_t_c_abdea823b17b49107284c615a4aa58dab} 
+\index{STM32RTC@{STM32RTC}!getBinaryMode@{getBinaryMode}}
+\index{getBinaryMode@{getBinaryMode}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getBinaryMode()}{getBinaryMode()}}
+{\footnotesize\ttfamily STM32\+RTC\+::\+Binary\+\_\+\+Mode STM32\+RTC\+::get\+Binary\+Mode (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+get the Binary Mode. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em mode} & MODE\+\_\+\+BCD, MODE\+\_\+\+BIN or MODE\+\_\+\+MIX \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_aca82abffbda863377e7eb152721dfe9e}\label{class_s_t_m32_r_t_c_aca82abffbda863377e7eb152721dfe9e} 
+\index{STM32RTC@{STM32RTC}!getClockSource@{getClockSource}}
+\index{getClockSource@{getClockSource}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getClockSource()}{getClockSource()}}
+{\footnotesize\ttfamily STM32\+RTC\+::\+Source\+\_\+\+Clock STM32\+RTC\+::get\+Clock\+Source (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+get the RTC clock source. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em clock} & source\+: LSI\+\_\+\+CLOCK, LSE\+\_\+\+CLOCK or HSE\+\_\+\+CLOCK \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_ab2ec9433905c4bf1040c4a94b1802716}\label{class_s_t_m32_r_t_c_ab2ec9433905c4bf1040c4a94b1802716} 
+\index{STM32RTC@{STM32RTC}!getDate@{getDate}}
+\index{getDate@{getDate}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getDate()}{getDate()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::get\+Date (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{week\+Day,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{day,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{month,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{year }\end{DoxyParamCaption})}
+
+
+
+get RTC time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em week\+Day} & pointer to the current week\+Day \\
+\hline
+{\em day} & pointer to the current day \\
+\hline
+{\em month} & pointer to the current month \\
+\hline
+{\em year} & pointer to the current year \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a3720019932e10b27c405f48287707193}\label{class_s_t_m32_r_t_c_a3720019932e10b27c405f48287707193} 
+\index{STM32RTC@{STM32RTC}!getDay@{getDay}}
+\index{getDay@{getDay}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getDay()}{getDay()}}
+{\footnotesize\ttfamily uint8\+\_\+t STM32\+RTC\+::get\+Day (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+get RTC day. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em return} & the current day from the RTC. \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a99375e4a80115c82d250a4132fdf98f4}\label{class_s_t_m32_r_t_c_a99375e4a80115c82d250a4132fdf98f4} 
+\index{STM32RTC@{STM32RTC}!getEpoch@{getEpoch}}
+\index{getEpoch@{getEpoch}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getEpoch()}{getEpoch()}}
+{\footnotesize\ttfamily time\+\_\+t STM32\+RTC\+::get\+Epoch (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{sub\+Seconds = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+get epoch time 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sub\+Seconds} & optional pointer to where to store subseconds of the epoch in ms \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em epoch} & time in seconds \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a82fc997ec0127ae82da944e4aab88ec1}\label{class_s_t_m32_r_t_c_a82fc997ec0127ae82da944e4aab88ec1} 
+\index{STM32RTC@{STM32RTC}!getHours@{getHours}}
+\index{getHours@{getHours}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getHours()}{getHours()}}
+{\footnotesize\ttfamily uint8\+\_\+t STM32\+RTC\+::get\+Hours (\begin{DoxyParamCaption}\item[{AM\+\_\+\+PM \texorpdfstring{$\ast$}{*}}]{period = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+get RTC hours. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em format} & optional (default\+: nullptr) pointer to the current hour period set in the RTC\+: AM or PM \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em return} & the current hours from the RTC. \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a96b35580f3664c9e6b9343d4563d8e95}\label{class_s_t_m32_r_t_c_a96b35580f3664c9e6b9343d4563d8e95} 
+\index{STM32RTC@{STM32RTC}!getMinutes@{getMinutes}}
+\index{getMinutes@{getMinutes}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getMinutes()}{getMinutes()}}
+{\footnotesize\ttfamily uint8\+\_\+t STM32\+RTC\+::get\+Minutes (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+get RTC minutes. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em return} & the current minutes from the RTC. \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_afaed12ad74110169b130c732b70af9e2}\label{class_s_t_m32_r_t_c_afaed12ad74110169b130c732b70af9e2} 
+\index{STM32RTC@{STM32RTC}!getMonth@{getMonth}}
+\index{getMonth@{getMonth}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getMonth()}{getMonth()}}
+{\footnotesize\ttfamily uint8\+\_\+t STM32\+RTC\+::get\+Month (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+get RTC month. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em return} & the current month from the RTC. \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_ab9ac6bb1e31c9592ec34df95f47fd398}\label{class_s_t_m32_r_t_c_ab9ac6bb1e31c9592ec34df95f47fd398} 
+\index{STM32RTC@{STM32RTC}!getPrediv@{getPrediv}}
+\index{getPrediv@{getPrediv}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getPrediv()}{getPrediv()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::get\+Prediv (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{predivA,  }\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{predivS }\end{DoxyParamCaption})}
+
+
+
+get user (a)synchronous prescaler values if set else computed ones for the current clock source. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em predivA} & pointer to the current Asynchronous prescaler value \\
+\hline
+{\em predivS} & pointer to the current Synchronous prescaler value, not used for STM32\+F1xx series. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a66cc945dd4726a15d77f883df6e161fa}\label{class_s_t_m32_r_t_c_a66cc945dd4726a15d77f883df6e161fa} 
+\index{STM32RTC@{STM32RTC}!getSeconds@{getSeconds}}
+\index{getSeconds@{getSeconds}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getSeconds()}{getSeconds()}}
+{\footnotesize\ttfamily uint8\+\_\+t STM32\+RTC\+::get\+Seconds (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+get RTC seconds. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em return} & the current seconds from the RTC. \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a0df1d5be2b884f9776a0a6b3936523cf}\label{class_s_t_m32_r_t_c_a0df1d5be2b884f9776a0a6b3936523cf} 
+\index{STM32RTC@{STM32RTC}!getSubSeconds@{getSubSeconds}}
+\index{getSubSeconds@{getSubSeconds}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getSubSeconds()}{getSubSeconds()}}
+{\footnotesize\ttfamily uint32\+\_\+t STM32\+RTC\+::get\+Sub\+Seconds (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+get RTC subseconds. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em return} & the current milliseconds from the RTC. \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a0d16803c48b852482ff57bcb002db456}\label{class_s_t_m32_r_t_c_a0d16803c48b852482ff57bcb002db456} 
+\index{STM32RTC@{STM32RTC}!getTime@{getTime}}
+\index{getTime@{getTime}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getTime()}{getTime()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::get\+Time (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{hours,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{minutes,  }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{seconds,  }\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{sub\+Seconds,  }\item[{AM\+\_\+\+PM \texorpdfstring{$\ast$}{*}}]{period = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+get RTC time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hours} & pointer to the current hours \\
+\hline
+{\em minutes} & pointer to the current minutes \\
+\hline
+{\em seconds} & pointer to the current seconds \\
+\hline
+{\em sub\+Seconds} & pointer to the current sub\+Seconds (in milliseconds) \\
+\hline
+{\em period} & optional (default\+: nullptr) pointer to the current hour period set in the RTC\+: AM or PM \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a60c0a4a745ee54d353980f07b373615f}\label{class_s_t_m32_r_t_c_a60c0a4a745ee54d353980f07b373615f} 
+\index{STM32RTC@{STM32RTC}!getWeekDay@{getWeekDay}}
+\index{getWeekDay@{getWeekDay}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getWeekDay()}{getWeekDay()}}
+{\footnotesize\ttfamily uint8\+\_\+t STM32\+RTC\+::get\+Week\+Day (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+get RTC week day. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em return} & the current week day from the RTC. \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_afe9695fa02b6dde39c7f113049756bc0}\label{class_s_t_m32_r_t_c_afe9695fa02b6dde39c7f113049756bc0} 
+\index{STM32RTC@{STM32RTC}!getY2kEpoch@{getY2kEpoch}}
+\index{getY2kEpoch@{getY2kEpoch}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getY2kEpoch()}{getY2kEpoch()}}
+{\footnotesize\ttfamily time\+\_\+t STM32\+RTC\+::get\+Y2k\+Epoch (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+get epoch time since 1st January 2000, 00\+:00\+:00 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em epoch} & time in seconds \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a450f9f2dae379c2ecdf62acb2838e199}\label{class_s_t_m32_r_t_c_a450f9f2dae379c2ecdf62acb2838e199} 
+\index{STM32RTC@{STM32RTC}!getYear@{getYear}}
+\index{getYear@{getYear}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{getYear()}{getYear()}}
+{\footnotesize\ttfamily uint8\+\_\+t STM32\+RTC\+::get\+Year (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+get RTC year. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em return} & the current year from the RTC. \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a17a7d0169a0f0dcdc00375e3a76f6e9e}\label{class_s_t_m32_r_t_c_a17a7d0169a0f0dcdc00375e3a76f6e9e} 
+\index{STM32RTC@{STM32RTC}!isAlarmEnabled@{isAlarmEnabled}}
+\index{isAlarmEnabled@{isAlarmEnabled}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{isAlarmEnabled()}{isAlarmEnabled()}}
+{\footnotesize\ttfamily bool STM32\+RTC\+::is\+Alarm\+Enabled (\begin{DoxyParamCaption}\item[{Alarm}]{name = {\ttfamily ALARM\+\_\+A} }\end{DoxyParamCaption})}
+
+
+
+Check whether RTC alarm is set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & optional (default\+: ALARM\+\_\+A) ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em True} & if Alarm is set \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a0c88c9d5c82b3a6baaaa8478671bc133}\label{class_s_t_m32_r_t_c_a0c88c9d5c82b3a6baaaa8478671bc133} 
+\index{STM32RTC@{STM32RTC}!setAlarmDate@{setAlarmDate}}
+\index{setAlarmDate@{setAlarmDate}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setAlarmDate()}{setAlarmDate()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Alarm\+Date (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{day,  }\item[{uint8\+\_\+t}]{month,  }\item[{uint8\+\_\+t}]{year,  }\item[{Alarm}]{name = {\ttfamily ALARM\+\_\+A} }\end{DoxyParamCaption})}
+
+
+
+set RTC alarm date. @\+NOTE Parameters month and year are ignored because the STM32 RTC can\textquotesingle{}t assign a month or year to an alarm. See board datasheet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em day} & 1-\/31 \\
+\hline
+{\em month} & is ignored \\
+\hline
+{\em year} & is ignored \\
+\hline
+{\em name} & optional (default\+: ALARM\+\_\+A) ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_s_t_m32_r_t_c_a02cbce8c6dd4d601ba8b183afccb0c2d}\label{class_s_t_m32_r_t_c_a02cbce8c6dd4d601ba8b183afccb0c2d} 
+\index{STM32RTC@{STM32RTC}!setAlarmDay@{setAlarmDay}}
+\index{setAlarmDay@{setAlarmDay}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setAlarmDay()}{setAlarmDay()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Alarm\+Day (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{day,  }\item[{Alarm}]{name = {\ttfamily ALARM\+\_\+A} }\end{DoxyParamCaption})}
+
+
+
+set RTC alarm day. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em day} & 1-\/31 \\
+\hline
+{\em name} & optional (default\+: ALARM\+\_\+A) ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a94bb952de6a52b6eb57d48061c11a890}\label{class_s_t_m32_r_t_c_a94bb952de6a52b6eb57d48061c11a890} 
+\index{STM32RTC@{STM32RTC}!setAlarmEpoch@{setAlarmEpoch}}
+\index{setAlarmEpoch@{setAlarmEpoch}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setAlarmEpoch()}{setAlarmEpoch()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Alarm\+Epoch (\begin{DoxyParamCaption}\item[{time\+\_\+t}]{ts,  }\item[{Alarm\+\_\+\+Match}]{match,  }\item[{Alarm}]{name }\end{DoxyParamCaption})}
+
+
+
+set RTC alarm from epoch time 
+
+
+\begin{DoxyParams}{Parameters}
+{\em epoch} & time in seconds \\
+\hline
+{\em Alarm\+\_\+\+Match} & match enum \\
+\hline
+{\em name} & optional (default\+: ALARM\+\_\+A) ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_s_t_m32_r_t_c_a539e587dee2bbb18e8c1a4b7ab4347e3}\label{class_s_t_m32_r_t_c_a539e587dee2bbb18e8c1a4b7ab4347e3} 
+\index{STM32RTC@{STM32RTC}!setAlarmEpoch@{setAlarmEpoch}}
+\index{setAlarmEpoch@{setAlarmEpoch}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setAlarmEpoch()}{setAlarmEpoch()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Alarm\+Epoch (\begin{DoxyParamCaption}\item[{time\+\_\+t}]{ts,  }\item[{Alarm\+\_\+\+Match}]{match = {\ttfamily MATCH\+\_\+DHHMMSS},  }\item[{uint32\+\_\+t}]{sub\+Seconds = {\ttfamily 0},  }\item[{Alarm}]{name = {\ttfamily ALARM\+\_\+A} }\end{DoxyParamCaption})}
+
+
+
+set RTC alarm from epoch time 
+
+
+\begin{DoxyParams}{Parameters}
+{\em epoch} & time in seconds \\
+\hline
+{\em Alarm\+\_\+\+Match} & match enum \\
+\hline
+{\em sub\+Seconds} & optional sub\+Seconds in ms (default\+: 0) \\
+\hline
+{\em name} & optional (default\+: ALARM\+\_\+A) ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_s_t_m32_r_t_c_ab2a06d447fb9b52044a76c33ea8d4ffa}\label{class_s_t_m32_r_t_c_ab2a06d447fb9b52044a76c33ea8d4ffa} 
+\index{STM32RTC@{STM32RTC}!setAlarmHours@{setAlarmHours}}
+\index{setAlarmHours@{setAlarmHours}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setAlarmHours()}{setAlarmHours()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Alarm\+Hours (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{hours,  }\item[{Alarm}]{name }\end{DoxyParamCaption})}
+
+
+
+set RTC alarm hour. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hour} & 0-\/23 or 0-\/12 \\
+\hline
+{\em name} & optional (default\+: ALARM\+\_\+A) ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a3c92212c8d5b56dc6fc072c497157dfb}\label{class_s_t_m32_r_t_c_a3c92212c8d5b56dc6fc072c497157dfb} 
+\index{STM32RTC@{STM32RTC}!setAlarmHours@{setAlarmHours}}
+\index{setAlarmHours@{setAlarmHours}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setAlarmHours()}{setAlarmHours()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Alarm\+Hours (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{hours,  }\item[{AM\+\_\+\+PM}]{period = {\ttfamily AM},  }\item[{Alarm}]{name = {\ttfamily ALARM\+\_\+A} }\end{DoxyParamCaption})}
+
+
+
+set RTC alarm hour. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hour} & 0-\/23 or 0-\/12 \\
+\hline
+{\em period} & hour format AM or PM (optional) \\
+\hline
+{\em name} & optional (default\+: ALARM\+\_\+A) ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_ab981fcf52f328d4a153ac21a784657f7}\label{class_s_t_m32_r_t_c_ab981fcf52f328d4a153ac21a784657f7} 
+\index{STM32RTC@{STM32RTC}!setAlarmMinutes@{setAlarmMinutes}}
+\index{setAlarmMinutes@{setAlarmMinutes}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setAlarmMinutes()}{setAlarmMinutes()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Alarm\+Minutes (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{minutes,  }\item[{Alarm}]{name = {\ttfamily ALARM\+\_\+A} }\end{DoxyParamCaption})}
+
+
+
+set RTC alarm minute. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em minutes} & 0-\/59 \\
+\hline
+{\em name} & optional (default\+: ALARM\+\_\+A) ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_ad6c1b1aea783ea4b763d82b55d36361b}\label{class_s_t_m32_r_t_c_ad6c1b1aea783ea4b763d82b55d36361b} 
+\index{STM32RTC@{STM32RTC}!setAlarmMonth@{setAlarmMonth}}
+\index{setAlarmMonth@{setAlarmMonth}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setAlarmMonth()}{setAlarmMonth()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Alarm\+Month (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{month }\end{DoxyParamCaption})}
+
+
+
+set RTC alarm month. @\+NOTE This function is kept for compatibility but the STM32 RTC can\textquotesingle{}t assign a month to an alarm. See board datasheet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em month} & is ignored. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_s_t_m32_r_t_c_a58d9e64af5b01d0cbf78de8b507d79e9}\label{class_s_t_m32_r_t_c_a58d9e64af5b01d0cbf78de8b507d79e9} 
+\index{STM32RTC@{STM32RTC}!setAlarmSeconds@{setAlarmSeconds}}
+\index{setAlarmSeconds@{setAlarmSeconds}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setAlarmSeconds()}{setAlarmSeconds()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Alarm\+Seconds (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{seconds,  }\item[{Alarm}]{name = {\ttfamily ALARM\+\_\+A} }\end{DoxyParamCaption})}
+
+
+
+set RTC alarm second. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em seconds} & 0-\/59 \\
+\hline
+{\em name} & optional (default\+: ALARM\+\_\+A) ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a498681e92c46ba10276d7ea340c4a41c}\label{class_s_t_m32_r_t_c_a498681e92c46ba10276d7ea340c4a41c} 
+\index{STM32RTC@{STM32RTC}!setAlarmSubSeconds@{setAlarmSubSeconds}}
+\index{setAlarmSubSeconds@{setAlarmSubSeconds}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setAlarmSubSeconds()}{setAlarmSubSeconds()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Alarm\+Sub\+Seconds (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{sub\+Seconds,  }\item[{Alarm}]{name = {\ttfamily ALARM\+\_\+A} }\end{DoxyParamCaption})}
+
+
+
+set RTC alarm subseconds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em subseconds} & 0-\/999 (in ms) or 32bit nb of milliseconds in BIN mode \\
+\hline
+{\em name} & optional (default\+: ALARM\+\_\+A) ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_afc58f0500fdcdb80d1e6953f78ea1b81}\label{class_s_t_m32_r_t_c_afc58f0500fdcdb80d1e6953f78ea1b81} 
+\index{STM32RTC@{STM32RTC}!setAlarmTime@{setAlarmTime}}
+\index{setAlarmTime@{setAlarmTime}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setAlarmTime()}{setAlarmTime()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Alarm\+Time (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{sub\+Seconds,  }\item[{Alarm}]{name = {\ttfamily ALARM\+\_\+A} }\end{DoxyParamCaption})}
+
+
+
+set RTC alarm time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sub\+Seconds} & 0-\/999 ms or 32bit nb of milliseconds in BIN mode \\
+\hline
+{\em name} & ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_aa937c6bfd1a97a4c5a1c54c4fa201408}\label{class_s_t_m32_r_t_c_aa937c6bfd1a97a4c5a1c54c4fa201408} 
+\index{STM32RTC@{STM32RTC}!setAlarmTime@{setAlarmTime}}
+\index{setAlarmTime@{setAlarmTime}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setAlarmTime()}{setAlarmTime()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Alarm\+Time (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{hours,  }\item[{uint8\+\_\+t}]{minutes,  }\item[{uint8\+\_\+t}]{seconds,  }\item[{Alarm}]{name }\end{DoxyParamCaption})}
+
+
+
+set RTC alarm time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hours} & 0-\/23 \\
+\hline
+{\em minutes} & 0-\/59 \\
+\hline
+{\em seconds} & 0-\/59 \\
+\hline
+{\em name} & ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a2794e6f088d9a558661f3eacf3856d0d}\label{class_s_t_m32_r_t_c_a2794e6f088d9a558661f3eacf3856d0d} 
+\index{STM32RTC@{STM32RTC}!setAlarmTime@{setAlarmTime}}
+\index{setAlarmTime@{setAlarmTime}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setAlarmTime()}{setAlarmTime()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Alarm\+Time (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{hours,  }\item[{uint8\+\_\+t}]{minutes,  }\item[{uint8\+\_\+t}]{seconds,  }\item[{uint32\+\_\+t}]{sub\+Seconds,  }\item[{Alarm}]{name }\end{DoxyParamCaption})}
+
+
+
+set RTC alarm time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hours} & 0-\/23 \\
+\hline
+{\em minutes} & 0-\/59 \\
+\hline
+{\em seconds} & 0-\/59 \\
+\hline
+{\em sub\+Seconds} & 0-\/999 ms or 32bit nb of milliseconds in BIN mode \\
+\hline
+{\em name} & ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a0ad7fbf4016ff47cf55c1b55e9f053d8}\label{class_s_t_m32_r_t_c_a0ad7fbf4016ff47cf55c1b55e9f053d8} 
+\index{STM32RTC@{STM32RTC}!setAlarmTime@{setAlarmTime}}
+\index{setAlarmTime@{setAlarmTime}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setAlarmTime()}{setAlarmTime()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Alarm\+Time (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{hours,  }\item[{uint8\+\_\+t}]{minutes,  }\item[{uint8\+\_\+t}]{seconds,  }\item[{uint32\+\_\+t}]{sub\+Seconds = {\ttfamily 0},  }\item[{AM\+\_\+\+PM}]{period = {\ttfamily AM},  }\item[{Alarm}]{name = {\ttfamily ALARM\+\_\+A} }\end{DoxyParamCaption})}
+
+
+
+set RTC alarm time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hours} & 0-\/23 (not used in BIN mode) \\
+\hline
+{\em minutes} & 0-\/59 (not used in BIN mode) \\
+\hline
+{\em seconds} & 0-\/59 (not used in BIN mode) \\
+\hline
+{\em sub\+Seconds} & 0-\/999 ms (optional) or 32bit nb of milliseconds in BIN mode \\
+\hline
+{\em period} & hour format AM or PM (optional) \\
+\hline
+{\em name} & optional (default\+: ALARM\+\_\+A) ALARM\+\_\+A or ALARM\+\_\+B if exists \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a87581e7c78c5b508327f134bac0bff52}\label{class_s_t_m32_r_t_c_a87581e7c78c5b508327f134bac0bff52} 
+\index{STM32RTC@{STM32RTC}!setAlarmYear@{setAlarmYear}}
+\index{setAlarmYear@{setAlarmYear}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setAlarmYear()}{setAlarmYear()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Alarm\+Year (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{year }\end{DoxyParamCaption})}
+
+
+
+set RTC alarm year. @\+NOTE This function is kept for compatibility but the STM32 RTC can\textquotesingle{}t assign a year to an alarm. See board datasheet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em year} & is ignored. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_s_t_m32_r_t_c_a2c1bfbe84be7f5a73f48ebf8f0c137ea}\label{class_s_t_m32_r_t_c_a2c1bfbe84be7f5a73f48ebf8f0c137ea} 
+\index{STM32RTC@{STM32RTC}!setBinaryMode@{setBinaryMode}}
+\index{setBinaryMode@{setBinaryMode}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setBinaryMode()}{setBinaryMode()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Binary\+Mode (\begin{DoxyParamCaption}\item[{Binary\+\_\+\+Mode}]{mode }\end{DoxyParamCaption})}
+
+
+
+set the Binary Mode. By default MODE\+\_\+\+BCD is selected. This method must be called before \doxylink{class_s_t_m32_r_t_c_ac9a9e5c8f1c3435ce810f97a032d558e}{begin()}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mode} & the RTC mode\+: MODE\+\_\+\+BCD, MODE\+\_\+\+BIN or MODE\+\_\+\+MIX \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a643642658b5f008f325c47e2149cf1f6}\label{class_s_t_m32_r_t_c_a643642658b5f008f325c47e2149cf1f6} 
+\index{STM32RTC@{STM32RTC}!setClockSource@{setClockSource}}
+\index{setClockSource@{setClockSource}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setClockSource()}{setClockSource()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Clock\+Source (\begin{DoxyParamCaption}\item[{Source\+\_\+\+Clock}]{source,  }\item[{uint32\+\_\+t}]{predivA = {\ttfamily (PREDIVA\+\_\+MAX~+~1)},  }\item[{uint32\+\_\+t}]{predivS = {\ttfamily (PREDIVS\+\_\+MAX~+~1)} }\end{DoxyParamCaption})}
+
+
+
+set the RTC clock source and user (a)synchronous prescalers values. 
+
+\begin{DoxyNote}{Note}
+By default LSI clock is selected. This method must be called before \doxylink{class_s_t_m32_r_t_c_ac9a9e5c8f1c3435ce810f97a032d558e}{begin()}. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em source} & clock source\+: LSI\+\_\+\+CLOCK, LSE\+\_\+\+CLOCK or HSE\+\_\+\+CLOCK \\
+\hline
+{\em predivA} & Asynchronous prescaler value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Reset value\+: RTC\+\_\+\+AUTO\+\_\+1\+\_\+\+SECOND for STM32\+F1xx series, else (PREDIVA\+\_\+\+MAX + 1) 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em predivS} & Synchronous prescaler value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Reset value\+: (PREDIVS\+\_\+\+MAX + 1), not used for STM32\+F1xx series. 
+\end{DoxyNote}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_ae0699553d093b85157cfe50b308f8053}\label{class_s_t_m32_r_t_c_ae0699553d093b85157cfe50b308f8053} 
+\index{STM32RTC@{STM32RTC}!setDate@{setDate}}
+\index{setDate@{setDate}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setDate()}{setDate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Date (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{day,  }\item[{uint8\+\_\+t}]{month,  }\item[{uint8\+\_\+t}]{year }\end{DoxyParamCaption})}
+
+
+
+set RTC calendar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em day} & 1-\/31 \\
+\hline
+{\em month} & 1-\/12 \\
+\hline
+{\em year} & 0-\/99 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_af0134446f5c31456a8903707dc31143f}\label{class_s_t_m32_r_t_c_af0134446f5c31456a8903707dc31143f} 
+\index{STM32RTC@{STM32RTC}!setDate@{setDate}}
+\index{setDate@{setDate}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setDate()}{setDate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Date (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{week\+Day,  }\item[{uint8\+\_\+t}]{day,  }\item[{uint8\+\_\+t}]{month,  }\item[{uint8\+\_\+t}]{year }\end{DoxyParamCaption})}
+
+
+
+set RTC calendar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em week\+Day} & 1-\/7 (Monday first) \\
+\hline
+{\em day} & 1-\/31 \\
+\hline
+{\em month} & 1-\/12 \\
+\hline
+{\em year} & 0-\/99 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_ab0e6dbbde607d49d5ab3f1cb3bca03da}\label{class_s_t_m32_r_t_c_ab0e6dbbde607d49d5ab3f1cb3bca03da} 
+\index{STM32RTC@{STM32RTC}!setDay@{setDay}}
+\index{setDay@{setDay}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setDay()}{setDay()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Day (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{day }\end{DoxyParamCaption})}
+
+
+
+set RTC day. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em day} & 1-\/31 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_ac63a376c5138b0cd59b00b02673b30b1}\label{class_s_t_m32_r_t_c_ac63a376c5138b0cd59b00b02673b30b1} 
+\index{STM32RTC@{STM32RTC}!setEpoch@{setEpoch}}
+\index{setEpoch@{setEpoch}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setEpoch()}{setEpoch()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Epoch (\begin{DoxyParamCaption}\item[{time\+\_\+t}]{ts,  }\item[{uint32\+\_\+t}]{sub\+Seconds = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+set RTC time from epoch time 
+
+
+\begin{DoxyParams}{Parameters}
+{\em epoch} & time in seconds \\
+\hline
+{\em sub\+Seconds} & sub\+Seconds in ms \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_s_t_m32_r_t_c_a8b63ef8d27d7c186d81939cf7c1a337b}\label{class_s_t_m32_r_t_c_a8b63ef8d27d7c186d81939cf7c1a337b} 
+\index{STM32RTC@{STM32RTC}!setHours@{setHours}}
+\index{setHours@{setHours}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setHours()}{setHours()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Hours (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{hours,  }\item[{AM\+\_\+\+PM}]{period = {\ttfamily AM} }\end{DoxyParamCaption})}
+
+
+
+set RTC hours. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hours} & 0-\/23 \\
+\hline
+{\em period} & hour format AM or PM (optional) \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_aac020fa0b2694161134a51f4494e42ee}\label{class_s_t_m32_r_t_c_aac020fa0b2694161134a51f4494e42ee} 
+\index{STM32RTC@{STM32RTC}!setMinutes@{setMinutes}}
+\index{setMinutes@{setMinutes}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setMinutes()}{setMinutes()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Minutes (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{minutes }\end{DoxyParamCaption})}
+
+
+
+set RTC minutes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em minutes} & 0-\/59 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_aa99614b3b04db0b8e1817a2b2ee242c1}\label{class_s_t_m32_r_t_c_aa99614b3b04db0b8e1817a2b2ee242c1} 
+\index{STM32RTC@{STM32RTC}!setMonth@{setMonth}}
+\index{setMonth@{setMonth}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setMonth()}{setMonth()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Month (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{month }\end{DoxyParamCaption})}
+
+
+
+set RTC month. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em month} & 1-\/12 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_acf948890167f1b7d54a4fb57a9b4147b}\label{class_s_t_m32_r_t_c_acf948890167f1b7d54a4fb57a9b4147b} 
+\index{STM32RTC@{STM32RTC}!setPrediv@{setPrediv}}
+\index{setPrediv@{setPrediv}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setPrediv()}{setPrediv()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Prediv (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{predivA,  }\item[{uint32\+\_\+t}]{predivS }\end{DoxyParamCaption})}
+
+
+
+set user (a)synchronous prescalers values. 
+
+\begin{DoxyNote}{Note}
+This method must be called before \doxylink{class_s_t_m32_r_t_c_ac9a9e5c8f1c3435ce810f97a032d558e}{begin()}. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em predivA} & Asynchronous prescaler value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Reset value\+: RTC\+\_\+\+AUTO\+\_\+1\+\_\+\+SECOND for STM32\+F1xx series, else (PREDIVA\+\_\+\+MAX + 1) 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em predivS} & Synchronous prescaler value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Reset value\+: (PREDIVS\+\_\+\+MAX + 1), not used for STM32\+F1xx series. 
+\end{DoxyNote}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a92a1e8f507d81da11536d6830eb3526c}\label{class_s_t_m32_r_t_c_a92a1e8f507d81da11536d6830eb3526c} 
+\index{STM32RTC@{STM32RTC}!setSeconds@{setSeconds}}
+\index{setSeconds@{setSeconds}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setSeconds()}{setSeconds()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Seconds (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{seconds }\end{DoxyParamCaption})}
+
+
+
+set RTC seconds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em seconds} & 0-\/59 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a7587f7ef21bff0ba4b3064c904714421}\label{class_s_t_m32_r_t_c_a7587f7ef21bff0ba4b3064c904714421} 
+\index{STM32RTC@{STM32RTC}!setSubSeconds@{setSubSeconds}}
+\index{setSubSeconds@{setSubSeconds}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setSubSeconds()}{setSubSeconds()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Sub\+Seconds (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{sub\+Seconds }\end{DoxyParamCaption})}
+
+
+
+set RTC subseconds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em subseconds} & 0-\/999 milliseconds \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a191c32ccc23e457f2709ef7498f168c4}\label{class_s_t_m32_r_t_c_a191c32ccc23e457f2709ef7498f168c4} 
+\index{STM32RTC@{STM32RTC}!setTime@{setTime}}
+\index{setTime@{setTime}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setTime()}{setTime()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Time (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{hours,  }\item[{uint8\+\_\+t}]{minutes,  }\item[{uint8\+\_\+t}]{seconds,  }\item[{uint32\+\_\+t}]{sub\+Seconds = {\ttfamily 1000},  }\item[{AM\+\_\+\+PM}]{period = {\ttfamily AM} }\end{DoxyParamCaption})}
+
+
+
+set RTC time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hours} & 0-\/23 \\
+\hline
+{\em minutes} & 0-\/59 \\
+\hline
+{\em seconds} & 0-\/59 \\
+\hline
+{\em sub\+Seconds} & 0-\/999 (optional) \\
+\hline
+{\em period} & hour format AM or PM (optional) \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_a30a1ced58fe417a0dda1c928bf095d12}\label{class_s_t_m32_r_t_c_a30a1ced58fe417a0dda1c928bf095d12} 
+\index{STM32RTC@{STM32RTC}!setWeekDay@{setWeekDay}}
+\index{setWeekDay@{setWeekDay}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setWeekDay()}{setWeekDay()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Week\+Day (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{week\+Day }\end{DoxyParamCaption})}
+
+
+
+set RTC week day. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em week} & day\+: 1-\/7 (Monday first) \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{class_s_t_m32_r_t_c_aeceb8915ede13e0f1ef64122e19baec9}\label{class_s_t_m32_r_t_c_aeceb8915ede13e0f1ef64122e19baec9} 
+\index{STM32RTC@{STM32RTC}!setY2kEpoch@{setY2kEpoch}}
+\index{setY2kEpoch@{setY2kEpoch}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setY2kEpoch()}{setY2kEpoch()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Y2k\+Epoch (\begin{DoxyParamCaption}\item[{time\+\_\+t}]{ts }\end{DoxyParamCaption})}
+
+
+
+set RTC time from epoch time since 1st January 2000, 00\+:00\+:00 
+
+
+\begin{DoxyParams}{Parameters}
+{\em epoch} & time in seconds \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_s_t_m32_r_t_c_a824d3f999a88a7d0ce804d8065b936e1}\label{class_s_t_m32_r_t_c_a824d3f999a88a7d0ce804d8065b936e1} 
+\index{STM32RTC@{STM32RTC}!setYear@{setYear}}
+\index{setYear@{setYear}!STM32RTC@{STM32RTC}}
+\doxysubsubsection{\texorpdfstring{setYear()}{setYear()}}
+{\footnotesize\ttfamily void STM32\+RTC\+::set\+Year (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{year }\end{DoxyParamCaption})}
+
+
+
+set RTC year. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em year} & 0-\/99 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em none} & \\
+\hline
+\end{DoxyRetVals}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+STM32\+RTC-\/1.\+7.\+0/src/\mbox{\hyperlink{_s_t_m32_r_t_c_8h}{STM32\+RTC.\+h}}\item 
+lib/\+STM32\+RTC-\/1.\+7.\+0/src/\mbox{\hyperlink{_s_t_m32_r_t_c_8cpp}{STM32\+RTC.\+cpp}}\end{DoxyCompactItemize}

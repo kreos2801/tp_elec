@@ -1,0 +1,273 @@
+\doxysection{STM32\+RTC.\+h}
+\hypertarget{_s_t_m32_r_t_c_8h_source}{}\label{_s_t_m32_r_t_c_8h_source}\index{lib/STM32RTC-\/1.7.0/src/STM32RTC.h@{lib/STM32RTC-\/1.7.0/src/STM32RTC.h}}
+\mbox{\hyperlink{_s_t_m32_r_t_c_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#ifndef\ \_\_STM32\_RTC\_H}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ \_\_STM32\_RTC\_H}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#include\ "{}Arduino.h"{}}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#if\ defined(STM32\_CORE\_VERSION)\ \&\&\ (STM32\_CORE\_VERSION\ \ <\ 0x02000000)}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\ \ \#error\ "{}This\ library\ is\ not\ compatible\ with\ core\ version\ used.\ Please\ update\ the\ core."{}}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{rtc_8h}{rtc.h}}"{}}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ Check\ if\ RTC\ HAL\ enable\ in\ variants/board\_name/stm32yzxx\_hal\_conf.h}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#ifndef\ HAL\_RTC\_MODULE\_ENABLED}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\ \ \#error\ "{}RTC\ configuration\ is\ missing.\ Check\ flag\ HAL\_RTC\_MODULE\_ENABLED\ in\ variants/board\_name/stm32yzxx\_hal\_conf.h"{}}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ <time.h>}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ STM32\_RTC\_VERSION\_MAJOR\ \ \ \ (0x01U)\ }}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ STM32\_RTC\_VERSION\_MINOR\ \ \ \ (0x04U)\ }}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ STM32\_RTC\_VERSION\_PATCH\ \ \ \ (0x00U)\ }}
+\DoxyCodeLine{00057\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00058\ \textcolor{comment}{\ *\ Extra\ label\ for\ development:}}
+\DoxyCodeLine{00059\ \textcolor{comment}{\ *\ 0:\ official\ release}}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ *\ [1-\/9]:\ release\ candidate}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ *\ F[0-\/9]:\ development}}
+\DoxyCodeLine{00062\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ STM32\_RTC\_VERSION\_EXTRA\ \ \ \ (0x00U)\ }}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ STM32\_RTC\_VERSION\ \ \ \ \ \ \ \ \ \ ((STM32\_RTC\_VERSION\_MAJOR\ <<\ 24U)\(\backslash\)}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |(STM32\_RTC\_VERSION\_MINOR\ <<\ 16U)\(\backslash\)}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |(STM32\_RTC\_VERSION\_PATCH\ <<\ 8U\ )\(\backslash\)}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |(STM32\_RTC\_VERSION\_EXTRA))}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{typedef}\ void(*voidFuncPtr)(\textcolor{keywordtype}{void}\ *);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ IS\_CLOCK\_SOURCE(SRC)\ (((SRC)\ ==\ STM32RTC::LSI\_CLOCK)\ ||\ ((SRC)\ ==\ STM32RTC::LSE\_CLOCK)\ ||\(\backslash\)}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((SRC)\ ==\ STM32RTC::HSE\_CLOCK))}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ IS\_HOUR\_FORMAT(FMT)\ \ (((FMT)\ ==\ STM32RTC::HOUR\_12)\ ||\ ((FMT)\ ==\ STM32RTC::HOUR\_24))}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_s_t_m32_r_t_c}{STM32RTC}}\ \{}
+\DoxyCodeLine{00076\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{enum}\ Hour\_Format\ :\ uint8\_t\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ HOUR\_12\ =\ HOUR\_FORMAT\_12,}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ HOUR\_24\ =\ HOUR\_FORMAT\_24}
+\DoxyCodeLine{00081\ \ \ \ \ \};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{enum}\ AM\_PM\ :\ uint8\_t\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ AM\ =\ HOUR\_AM,}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ PM\ =\ HOUR\_PM}
+\DoxyCodeLine{00086\ \ \ \ \ \};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{enum}\ Binary\_Mode\ :\ uint8\_t\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ MODE\_BCD\ =\ MODE\_BINARY\_NONE,}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ MODE\_BIN\ =\ MODE\_BINARY\_ONLY,}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ MODE\_MIX\ =\ MODE\_BINARY\_MIX}
+\DoxyCodeLine{00092\ \ \ \ \ \};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{enum}\ Alarm\_Match\ :\ uint8\_t\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ MATCH\_OFF\ \ \ \ \ \ \ \ \ \ =\ OFF\_MSK,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Never}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ MATCH\_SUBSEC\ \ \ \ \ \ \ =\ SUBSEC\_MSK,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Every\ Subsecond}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ MATCH\_SS\ \ \ \ \ \ \ \ \ \ \ =\ SS\_MSK,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Every\ Minute}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ MATCH\_MMSS\ \ \ \ \ \ \ \ \ =\ SS\_MSK\ |\ MM\_MSK,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Every\ Hour}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ MATCH\_HHMMSS\ \ \ \ \ \ \ =\ SS\_MSK\ |\ MM\_MSK\ |\ HH\_MSK,\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Every\ Day}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ MATCH\_DHHMMSS\ \ \ \ \ \ =\ SS\_MSK\ |\ MM\_MSK\ |\ HH\_MSK\ |\ D\_MSK,\ \textcolor{comment}{//\ Every\ Month}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \textcolor{comment}{/*\ NOTE:\ STM32\ RTC\ can't\ assign\ a\ month\ or\ a\ year\ to\ an\ alarm.\ Those\ enum}}
+\DoxyCodeLine{00102\ \textcolor{comment}{\ \ \ \ \ \ are\ kept\ for\ compatibility\ but\ are\ ignored\ inside\ enableAlarm().\ */}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ MATCH\_MMDDHHMMSS\ \ \ =\ SS\_MSK\ |\ MM\_MSK\ |\ HH\_MSK\ |\ D\_MSK\ |\ M\_MSK,}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ MATCH\_YYMMDDHHMMSS\ =\ SS\_MSK\ |\ MM\_MSK\ |\ HH\_MSK\ |\ D\_MSK\ |\ M\_MSK\ |\ Y\_MSK}
+\DoxyCodeLine{00105\ \ \ \ \ \};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{enum}\ Source\_Clock\ :\ uint8\_t\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ LSI\_CLOCK\ =\ ::LSI\_CLOCK,}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ LSE\_CLOCK\ =\ ::LSE\_CLOCK,}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ HSE\_CLOCK\ =\ ::HSE\_CLOCK}
+\DoxyCodeLine{00111\ \ \ \ \ \};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{enum}\ Alarm\ :\ uint32\_t\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ ALARM\_A\ =\ ::ALARM\_A,}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#ifdef\ RTC\_ALARM\_B}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ ALARM\_B\ =\ ::ALARM\_B}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00118\ \ \ \ \ \};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_s_t_m32_r_t_c}{STM32RTC}}\ \&getInstance()}
+\DoxyCodeLine{00121\ \ \ \ \ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_s_t_m32_r_t_c}{STM32RTC}}\ instance;\ \textcolor{comment}{//\ Guaranteed\ to\ be\ destroyed.}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \textcolor{comment}{//\ Instantiated\ on\ first\ use.}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ instance;}
+\DoxyCodeLine{00125\ \ \ \ \ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \mbox{\hyperlink{class_s_t_m32_r_t_c}{STM32RTC}}(\mbox{\hyperlink{class_s_t_m32_r_t_c}{STM32RTC}}\ \textcolor{keyword}{const}\ \&)\ \ \ \ \ \ \ \ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{void}\ operator=(\mbox{\hyperlink{class_s_t_m32_r_t_c}{STM32RTC}}\ \textcolor{keyword}{const}\ \&)\ \ =\ \textcolor{keyword}{delete};}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_ac9a9e5c8f1c3435ce810f97a032d558e}{begin}}(\textcolor{keywordtype}{bool}\ resetTime,\ Hour\_Format\ format\ =\ HOUR\_24);}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_ac9a9e5c8f1c3435ce810f97a032d558e}{begin}}(Hour\_Format\ format\ =\ HOUR\_24);}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_adf77f161a21517d4660d00be9545628d}{end}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{comment}{//\ Could\ be\ used\ to\ mix\ Arduino\ API\ and\ STM32Cube\ HAL\ API\ (ex:\ DMA).\ Use\ at\ your\ own\ risk.}}
+\DoxyCodeLine{00136\ \ \ \ \ RTC\_HandleTypeDef\ *getHandle(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00137\ \ \ \ \ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RTC\_GetHandle();}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ Source\_Clock\ \mbox{\hyperlink{class_s_t_m32_r_t_c_aca82abffbda863377e7eb152721dfe9e}{getClockSource}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a643642658b5f008f325c47e2149cf1f6}{setClockSource}}(Source\_Clock\ source,\ uint32\_t\ predivA\ =\ (PREDIVA\_MAX\ +\ 1),\ uint32\_t\ predivS\ =\ (PREDIVS\_MAX\ +\ 1));}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_ab9ac6bb1e31c9592ec34df95f47fd398}{getPrediv}}(uint32\_t\ *predivA,\ uint32\_t\ *predivS);}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_acf948890167f1b7d54a4fb57a9b4147b}{setPrediv}}(uint32\_t\ predivA,\ uint32\_t\ predivS);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ Binary\_Mode\ \mbox{\hyperlink{class_s_t_m32_r_t_c_abdea823b17b49107284c615a4aa58dab}{getBinaryMode}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a2c1bfbe84be7f5a73f48ebf8f0c137ea}{setBinaryMode}}(Binary\_Mode\ mode);}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_afac46f3b1ba34a56d86fdd4dca26d0f4}{enableAlarm}}(Alarm\_Match\ match,\ Alarm\ name\ =\ ALARM\_A);}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a10b88ec2cbfcebf53aea24d808d5168a}{disableAlarm}}(Alarm\ name\ =\ ALARM\_A);}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_adcd5814091cef21194dd142ac25eb9ee}{attachInterrupt}}(voidFuncPtr\ callback,\ Alarm\ name);}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_adcd5814091cef21194dd142ac25eb9ee}{attachInterrupt}}(voidFuncPtr\ callback,\ \textcolor{keywordtype}{void}\ *data\ =\ \textcolor{keyword}{nullptr},\ Alarm\ name\ =\ ALARM\_A);}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a0cf8238811865b86a5a9bdfbc74decdd}{detachInterrupt}}(Alarm\ name\ =\ ALARM\_A);}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#ifdef\ ONESECOND\_IRQn}}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{comment}{//\ Other\ mcu\ than\ stm32F1\ will\ use\ the\ WakeUp\ feature\ to\ interrupt\ each\ second.}}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{void}\ attachSecondsInterrupt(voidFuncPtr\ callback);}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordtype}{void}\ detachSecondsInterrupt(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ ONESECOND\_IRQn\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\#ifdef\ STM32WLxx}}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{comment}{//\ STM32WLxx\ has\ a\ dedicated\ IRQ}}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordtype}{void}\ attachSubSecondsUnderflowInterrupt(voidFuncPtr\ callback);}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordtype}{void}\ detachSubSecondsUnderflowInterrupt(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ STM32WLxx\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{comment}{//\ Kept\ for\ compatibility:\ use\ STM32LowPower\ library.}}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordtype}{void}\ standbyMode();}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{comment}{/*\ Get\ Functions\ */}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a0df1d5be2b884f9776a0a6b3936523cf}{getSubSeconds}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00173\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a66cc945dd4726a15d77f883df6e161fa}{getSeconds}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00174\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a96b35580f3664c9e6b9343d4563d8e95}{getMinutes}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00175\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a82fc997ec0127ae82da944e4aab88ec1}{getHours}}(AM\_PM\ *period\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a0d16803c48b852482ff57bcb002db456}{getTime}}(uint8\_t\ *hours,\ uint8\_t\ *minutes,\ uint8\_t\ *seconds,\ uint32\_t\ *subSeconds,\ AM\_PM\ *period\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a60c0a4a745ee54d353980f07b373615f}{getWeekDay}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00179\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a3720019932e10b27c405f48287707193}{getDay}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00180\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{class_s_t_m32_r_t_c_afaed12ad74110169b130c732b70af9e2}{getMonth}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00181\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a450f9f2dae379c2ecdf62acb2838e199}{getYear}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_ab2ec9433905c4bf1040c4a94b1802716}{getDate}}(uint8\_t\ *weekDay,\ uint8\_t\ *day,\ uint8\_t\ *month,\ uint8\_t\ *year);}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a7b898ab0b8b52047c7e254afc8af3aaf}{getAlarmSubSeconds}}(Alarm\ name\ =\ ALARM\_A);}
+\DoxyCodeLine{00185\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{class_s_t_m32_r_t_c_aebd6db9c5123181d9a0341a3b8f3e179}{getAlarmSeconds}}(Alarm\ name\ =\ ALARM\_A);}
+\DoxyCodeLine{00186\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{class_s_t_m32_r_t_c_ae0b6e086fe78a4398879b4039f1b6c50}{getAlarmMinutes}}(Alarm\ name\ =\ ALARM\_A);}
+\DoxyCodeLine{00187\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{class_s_t_m32_r_t_c_aac92363e999a108b4210f81fbb483ad5}{getAlarmHours}}(Alarm\ name);}
+\DoxyCodeLine{00188\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{class_s_t_m32_r_t_c_aac92363e999a108b4210f81fbb483ad5}{getAlarmHours}}(AM\_PM\ *period\ =\ \textcolor{keyword}{nullptr},\ Alarm\ name\ =\ ALARM\_A);}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a008a78ed36456b67fe5797209a3db86c}{getAlarmDay}}(Alarm\ name\ =\ ALARM\_A);}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{comment}{//\ Kept\ for\ compatibility\ with\ Arduino\ RTCZero\ library.}}
+\DoxyCodeLine{00193\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a6b99b1cfaea732de0669baf15a70dd7f}{getAlarmMonth}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00194\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a60f7aabdb48c10f0c87e99511b63fce0}{getAlarmYear}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{comment}{/*\ Set\ Functions\ */}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a7587f7ef21bff0ba4b3064c904714421}{setSubSeconds}}(uint32\_t\ subSeconds);}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a92a1e8f507d81da11536d6830eb3526c}{setSeconds}}(uint8\_t\ seconds);}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_aac020fa0b2694161134a51f4494e42ee}{setMinutes}}(uint8\_t\ minutes);}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a8b63ef8d27d7c186d81939cf7c1a337b}{setHours}}(uint8\_t\ hours,\ AM\_PM\ period\ =\ AM);}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a191c32ccc23e457f2709ef7498f168c4}{setTime}}(uint8\_t\ hours,\ uint8\_t\ minutes,\ uint8\_t\ seconds,\ uint32\_t\ subSeconds\ =\ 1000,\ AM\_PM\ period\ =\ AM);}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a30a1ced58fe417a0dda1c928bf095d12}{setWeekDay}}(uint8\_t\ weekDay);}
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_ab0e6dbbde607d49d5ab3f1cb3bca03da}{setDay}}(uint8\_t\ day);}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_aa99614b3b04db0b8e1817a2b2ee242c1}{setMonth}}(uint8\_t\ month);}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a824d3f999a88a7d0ce804d8065b936e1}{setYear}}(uint8\_t\ year);}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_ae0699553d093b85157cfe50b308f8053}{setDate}}(uint8\_t\ day,\ uint8\_t\ month,\ uint8\_t\ year);}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordtype}{void}\ setDate(uint8\_t\ weekDay,\ uint8\_t\ day,\ uint8\_t\ month,\ uint8\_t\ year);}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a498681e92c46ba10276d7ea340c4a41c}{setAlarmSubSeconds}}(uint32\_t\ subSeconds,\ Alarm\ name\ =\ ALARM\_A);}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a58d9e64af5b01d0cbf78de8b507d79e9}{setAlarmSeconds}}(uint8\_t\ seconds,\ Alarm\ name\ =\ ALARM\_A);}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_ab981fcf52f328d4a153ac21a784657f7}{setAlarmMinutes}}(uint8\_t\ minutes,\ Alarm\ name\ =\ ALARM\_A);}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_ab2a06d447fb9b52044a76c33ea8d4ffa}{setAlarmHours}}(uint8\_t\ hours,\ Alarm\ name);}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_ab2a06d447fb9b52044a76c33ea8d4ffa}{setAlarmHours}}(uint8\_t\ hours,\ AM\_PM\ period\ =\ AM,\ Alarm\ name\ =\ ALARM\_A);}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_afc58f0500fdcdb80d1e6953f78ea1b81}{setAlarmTime}}(uint32\_t\ subSeconds,\ Alarm\ name\ =\ ALARM\_A);}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_afc58f0500fdcdb80d1e6953f78ea1b81}{setAlarmTime}}(uint8\_t\ hours,\ uint8\_t\ minutes,\ uint8\_t\ seconds,\ Alarm\ name);}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_afc58f0500fdcdb80d1e6953f78ea1b81}{setAlarmTime}}(uint8\_t\ hours,\ uint8\_t\ minutes,\ uint8\_t\ seconds,\ uint32\_t\ subSeconds,\ Alarm\ name);}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_afc58f0500fdcdb80d1e6953f78ea1b81}{setAlarmTime}}(uint8\_t\ hours,\ uint8\_t\ minutes,\ uint8\_t\ seconds,\ uint32\_t\ subSeconds\ =\ 0,\ AM\_PM\ period\ =\ AM,\ Alarm\ name\ =\ ALARM\_A);}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a02cbce8c6dd4d601ba8b183afccb0c2d}{setAlarmDay}}(uint8\_t\ day,\ Alarm\ name\ =\ ALARM\_A);}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{comment}{//\ Kept\ for\ compatibility\ with\ Arduino\ RTCZero\ library.}}
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_ad6c1b1aea783ea4b763d82b55d36361b}{setAlarmMonth}}(uint8\_t\ month);}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a87581e7c78c5b508327f134bac0bff52}{setAlarmYear}}(uint8\_t\ year);}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a0c88c9d5c82b3a6baaaa8478671bc133}{setAlarmDate}}(uint8\_t\ day,\ uint8\_t\ month,\ uint8\_t\ year,\ Alarm\ name\ =\ ALARM\_A);}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{comment}{/*\ Epoch\ Functions\ */}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ time\_t\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a99375e4a80115c82d250a4132fdf98f4}{getEpoch}}(uint32\_t\ *subSeconds\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00231\ \ \ \ \ time\_t\ \mbox{\hyperlink{class_s_t_m32_r_t_c_afe9695fa02b6dde39c7f113049756bc0}{getY2kEpoch}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_ac63a376c5138b0cd59b00b02673b30b1}{setEpoch}}(time\_t\ ts,\ uint32\_t\ subSeconds\ =\ 0);}
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_aeceb8915ede13e0f1ef64122e19baec9}{setY2kEpoch}}(time\_t\ ts);}
+\DoxyCodeLine{00234\ \ \ \ \ time\_t\ \mbox{\hyperlink{class_s_t_m32_r_t_c_aae824ebd121409da05bd77a575a2aa99}{getAlarmEpoch}}(Alarm\ name);}
+\DoxyCodeLine{00235\ \ \ \ \ time\_t\ \mbox{\hyperlink{class_s_t_m32_r_t_c_aae824ebd121409da05bd77a575a2aa99}{getAlarmEpoch}}(uint32\_t\ *subSeconds\ =\ \textcolor{keyword}{nullptr},\ Alarm\ name\ =\ ALARM\_A);}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a94bb952de6a52b6eb57d48061c11a890}{setAlarmEpoch}}(time\_t\ ts,\ Alarm\_Match\ match,\ Alarm\ name);}
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a94bb952de6a52b6eb57d48061c11a890}{setAlarmEpoch}}(time\_t\ ts,\ Alarm\_Match\ match\ =\ MATCH\_DHHMMSS,\ uint32\_t\ subSeconds\ =\ 0,\ Alarm\ name\ =\ ALARM\_A);}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keywordtype}{bool}\ isConfigured(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00240\ \ \ \ \ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RTC\_IsConfigured();}
+\DoxyCodeLine{00242\ \ \ \ \ \}}
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keywordtype}{bool}\ isFormat\_24hour(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00244\ \ \ \ \ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\_format\ ==\ HOUR\_24);}
+\DoxyCodeLine{00246\ \ \ \ \ \}}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_s_t_m32_r_t_c_a17a7d0169a0f0dcdc00375e3a76f6e9e}{isAlarmEnabled}}(Alarm\ name\ =\ ALARM\_A);}
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keywordtype}{bool}\ isTimeSet(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00249\ \ \ \ \ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_timeSet;}
+\DoxyCodeLine{00251\ \ \ \ \ \}}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }STM32LowPower;}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00256\ \ \ \ \ \mbox{\hyperlink{class_s_t_m32_r_t_c}{STM32RTC}}(\textcolor{keywordtype}{void}):\ \_mode(MODE\_BCD),\ \_clockSource(LSI\_CLOCK)}
+\DoxyCodeLine{00257\ \ \ \ \ \{}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \mbox{\hyperlink{class_s_t_m32_r_t_c_a643642658b5f008f325c47e2149cf1f6}{setClockSource}}(\_clockSource);}
+\DoxyCodeLine{00259\ \ \ \ \ \}}
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \_timeSet;}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \ \ \ \ Hour\_Format\ \_format;}
+\DoxyCodeLine{00264\ \ \ \ \ Binary\_Mode\ \_mode;}
+\DoxyCodeLine{00265\ \ \ \ \ AM\_PM\ \ \ \ \ \ \ \_hoursPeriod;}
+\DoxyCodeLine{00266\ \ \ \ \ uint8\_t\ \ \ \ \ \_hours;}
+\DoxyCodeLine{00267\ \ \ \ \ uint8\_t\ \ \ \ \ \_minutes;}
+\DoxyCodeLine{00268\ \ \ \ \ uint8\_t\ \ \ \ \ \_seconds;}
+\DoxyCodeLine{00269\ \ \ \ \ uint32\_t\ \ \ \ \_subSeconds;}
+\DoxyCodeLine{00270\ \ \ \ \ uint8\_t\ \ \ \ \ \_year;}
+\DoxyCodeLine{00271\ \ \ \ \ uint8\_t\ \ \ \ \ \_month;}
+\DoxyCodeLine{00272\ \ \ \ \ uint8\_t\ \ \ \ \ \_day;}
+\DoxyCodeLine{00273\ \ \ \ \ uint8\_t\ \ \ \ \ \_wday;}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{comment}{/*\ ALARM\ A\ */}}
+\DoxyCodeLine{00276\ \ \ \ \ uint8\_t\ \ \ \ \ \_alarmDay;}
+\DoxyCodeLine{00277\ \ \ \ \ uint8\_t\ \ \ \ \ \_alarmHours;}
+\DoxyCodeLine{00278\ \ \ \ \ uint8\_t\ \ \ \ \ \_alarmMinutes;}
+\DoxyCodeLine{00279\ \ \ \ \ uint8\_t\ \ \ \ \ \_alarmSeconds;}
+\DoxyCodeLine{00280\ \ \ \ \ uint32\_t\ \ \ \ \_alarmSubSeconds;}
+\DoxyCodeLine{00281\ \ \ \ \ AM\_PM\ \ \ \ \ \ \ \_alarmPeriod;}
+\DoxyCodeLine{00282\ \ \ \ \ Alarm\_Match\ \_alarmMatch;}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ \textcolor{preprocessor}{\#ifdef\ RTC\_ALARM\_B}}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{comment}{/*\ ALARM\ B\ */}}
+\DoxyCodeLine{00286\ \ \ \ \ uint8\_t\ \ \ \ \ \_alarmBDay;}
+\DoxyCodeLine{00287\ \ \ \ \ uint8\_t\ \ \ \ \ \_alarmBHours;}
+\DoxyCodeLine{00288\ \ \ \ \ uint8\_t\ \ \ \ \ \_alarmBMinutes;}
+\DoxyCodeLine{00289\ \ \ \ \ uint8\_t\ \ \ \ \ \_alarmBSeconds;}
+\DoxyCodeLine{00290\ \ \ \ \ uint32\_t\ \ \ \ \_alarmBSubSeconds;}
+\DoxyCodeLine{00291\ \ \ \ \ AM\_PM\ \ \ \ \ \ \ \_alarmBPeriod;}
+\DoxyCodeLine{00292\ \ \ \ \ Alarm\_Match\ \_alarmBMatch;}
+\DoxyCodeLine{00293\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \ \ \ \ Source\_Clock\ \_clockSource;}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{keywordtype}{void}\ configForLowPower(Source\_Clock\ source);}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keywordtype}{void}\ syncTime(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keywordtype}{void}\ syncDate(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keywordtype}{void}\ syncAlarmTime(Alarm\ name\ =\ ALARM\_A);}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \};}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_STM32\_RTC\_H}}
+
+\end{DoxyCode}

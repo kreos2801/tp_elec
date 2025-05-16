@@ -1,0 +1,53 @@
+\doxysection{main.\+h}
+\hypertarget{main_8h_source}{}\label{main_8h_source}\index{Periphérique\_et\_microcontroler/include/main.h@{Periphérique\_et\_microcontroler/include/main.h}}
+\mbox{\hyperlink{main_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00016\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{main_8h_a41c0ce4d75d0a79c5ad6fcb723054945}{ALARM\_STATE}}\ \{}
+\DoxyCodeLine{00017\ OFF,\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00018\ \mbox{\hyperlink{main_8h_a41c0ce4d75d0a79c5ad6fcb723054945a977d478dacaae531f95695750d1e9d03}{ON}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00019\ \mbox{\hyperlink{main_8h_a41c0ce4d75d0a79c5ad6fcb723054945ad3eea51f796ad468a4e1c61401e901b4}{TRIGGERED}}\ \ \ }
+\DoxyCodeLine{00020\ \};}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_n_u_i_d__s}{NUID\_s}}\ \{}
+\DoxyCodeLine{00028\ \textcolor{keywordtype}{byte}\ size;\ }
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{byte}\ *\mbox{\hyperlink{struct_n_u_i_d__s_aef15f2533c12e5807ccf17d944f598f6}{uidByte}};\ }
+\DoxyCodeLine{00030\ \}\ \mbox{\hyperlink{struct_n_u_i_d__s}{NUID}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00037\ \mbox{\hyperlink{struct_n_u_i_d__s}{NUID}}\ *\mbox{\hyperlink{main_8h_a53c98615a40f75578a23d058f00e948d}{read}}();}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_user__s}{User\_s}}\ \{}
+\DoxyCodeLine{00046\ String\ name\ =\ \textcolor{stringliteral}{"{}"{}};\ }
+\DoxyCodeLine{00047\ \textcolor{keywordtype}{byte}\ \mbox{\hyperlink{struct_user__s_a93e353b3bf6c3809388b7f3f2de0235d}{tag\_id}}[7]\{\};\ }
+\DoxyCodeLine{00048\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_user__s_a51f806b7d0b8970e8f634829d93842e8}{days\_access}}[7]\{\};\ }
+\DoxyCodeLine{00049\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_user__s_a811f7bb4dbf4f46e252de281faba339a}{isEnabled}}\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00050\ std::array<int,\ 2>\ \mbox{\hyperlink{struct_user__s_a7e3b770efe4dc418627de1c4d6ba6f27}{startHour}}\ =\ \{-\/1,\ -\/1\};\ }
+\DoxyCodeLine{00051\ std::array<int,\ 2>\ \mbox{\hyperlink{struct_user__s_a2ea25b37207fb9ded0fb99046ae58452}{endHour}}\ =\ \{-\/1,\ -\/1\};\ }
+\DoxyCodeLine{00058\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_user__s_a735b54ee4525b709ca13dc4119dfbde0}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_user__s}{User\_s}}\ \&other)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00059\ \textcolor{keywordflow}{return}\ name\ ==\ other.name;}
+\DoxyCodeLine{00060\ \}}
+\DoxyCodeLine{00061\ \}\ \mbox{\hyperlink{struct_user__s}{User}};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00071\ \mbox{\hyperlink{struct_user__s}{User}}\ *\mbox{\hyperlink{main_8h_a482a752ced8379fe43c970138c3c17d9}{getUserByUID}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_n_u_i_d__s}{NUID}}\ *nuid);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00078\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8h_af900d67340544f38a0f51707bfddf4e4}{readSerial}}();}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00084\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8h_a0a6a5e3a4f3fd5cdd80894ab36df815d}{addUserBySerial}}();}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00092\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8h_a6f2ebe67487e347fab4a145eb56cf98c}{addUser}}(\textcolor{keyword}{const}\ String\ \&username,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_n_u_i_d__s}{NUID}}\ *nuid);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00099\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8h_acf40ae85016c0a6c3974d7bf122cd4f5}{deleteUser}}(\mbox{\hyperlink{struct_user__s}{User}}\ *user);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00105\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8h_a61e706bcf586a124495d82a2fe6929de}{printUsers}}();}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00111\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8h_a447bfdf3be9bb1f0cf8a3d34b87b3bd6}{setAlarmOn}}();}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00117\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8h_aa43f68b6c12da400ebbda9664b030944}{updateLed}}();}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00123\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8h_a88749dbdae701f1327f3b0a5880ee993}{triggerAlarm}}();}
+
+\end{DoxyCode}

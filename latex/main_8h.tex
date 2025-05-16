@@ -1,0 +1,165 @@
+\doxysection{Periphérique\+\_\+et\+\_\+microcontroler/include/main.h File Reference}
+\hypertarget{main_8h}{}\label{main_8h}\index{Periphérique\_et\_microcontroler/include/main.h@{Periphérique\_et\_microcontroler/include/main.h}}
+
+
+Main header file for the TP\+\_\+\+ELEC project.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_n_u_i_d__s}{NUID\+\_\+s}}
+\begin{DoxyCompactList}\small\item\em Structure to hold RFID tag unique identifier data. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_user__s}{User\+\_\+s}}
+\begin{DoxyCompactList}\small\item\em User data structure for access control system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{main_8h_a60922834ccc8fb20436b8f471d781f51}\label{main_8h_a60922834ccc8fb20436b8f471d781f51} 
+typedef struct \mbox{\hyperlink{struct_n_u_i_d__s}{NUID\+\_\+s}} {\bfseries NUID}
+\item 
+\Hypertarget{main_8h_ae96eb51e663e6bb9c8bda324bbca964b}\label{main_8h_ae96eb51e663e6bb9c8bda324bbca964b} 
+typedef struct \mbox{\hyperlink{struct_user__s}{User\+\_\+s}} {\bfseries User}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{main_8h_a41c0ce4d75d0a79c5ad6fcb723054945}{ALARM\+\_\+\+STATE}} \{ {\bfseries OFF}
+, \mbox{\hyperlink{main_8h_a41c0ce4d75d0a79c5ad6fcb723054945a977d478dacaae531f95695750d1e9d03}{ON}}
+, \mbox{\hyperlink{main_8h_a41c0ce4d75d0a79c5ad6fcb723054945ad3eea51f796ad468a4e1c61401e901b4}{TRIGGERED}}
+ \}
+\begin{DoxyCompactList}\small\item\em Represents the possible states of the alarm system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_n_u_i_d__s}{NUID}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{main_8h_a53c98615a40f75578a23d058f00e948d}{read}} ()
+\begin{DoxyCompactList}\small\item\em Reads an RFID tag and returns its NUID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_user__s}{User}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{main_8h_a482a752ced8379fe43c970138c3c17d9}{get\+User\+By\+UID}} (const \mbox{\hyperlink{struct_n_u_i_d__s}{NUID}} \texorpdfstring{$\ast$}{*}nuid)
+\begin{DoxyCompactList}\small\item\em Look up a user by their RFID tag identifier. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8h_af900d67340544f38a0f51707bfddf4e4}{read\+Serial}} ()
+\begin{DoxyCompactList}\small\item\em Process serial input commands. \end{DoxyCompactList}\item 
+\Hypertarget{main_8h_a0a6a5e3a4f3fd5cdd80894ab36df815d}\label{main_8h_a0a6a5e3a4f3fd5cdd80894ab36df815d} 
+void {\bfseries add\+User\+By\+Serial} ()
+\begin{DoxyCompactList}\small\item\em Add a new user with credentials provided via serial input. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8h_a6f2ebe67487e347fab4a145eb56cf98c}{add\+User}} (const String \&username, const \mbox{\hyperlink{struct_n_u_i_d__s}{NUID}} \texorpdfstring{$\ast$}{*}nuid)
+\begin{DoxyCompactList}\small\item\em Add a new user to the system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8h_acf40ae85016c0a6c3974d7bf122cd4f5}{delete\+User}} (\mbox{\hyperlink{struct_user__s}{User}} \texorpdfstring{$\ast$}{*}user)
+\begin{DoxyCompactList}\small\item\em Remove a user from the system. \end{DoxyCompactList}\item 
+\Hypertarget{main_8h_a61e706bcf586a124495d82a2fe6929de}\label{main_8h_a61e706bcf586a124495d82a2fe6929de} 
+void {\bfseries print\+Users} ()
+\begin{DoxyCompactList}\small\item\em Display all users in the system via serial output. \end{DoxyCompactList}\item 
+\Hypertarget{main_8h_a447bfdf3be9bb1f0cf8a3d34b87b3bd6}\label{main_8h_a447bfdf3be9bb1f0cf8a3d34b87b3bd6} 
+void {\bfseries set\+Alarm\+On} ()
+\begin{DoxyCompactList}\small\item\em Activate the alarm system. \end{DoxyCompactList}\item 
+\Hypertarget{main_8h_aa43f68b6c12da400ebbda9664b030944}\label{main_8h_aa43f68b6c12da400ebbda9664b030944} 
+void {\bfseries update\+Led} ()
+\begin{DoxyCompactList}\small\item\em Update LED indicators based on system state. \end{DoxyCompactList}\item 
+\Hypertarget{main_8h_a88749dbdae701f1327f3b0a5880ee993}\label{main_8h_a88749dbdae701f1327f3b0a5880ee993} 
+void {\bfseries trigger\+Alarm} ()
+\begin{DoxyCompactList}\small\item\em Activate the alarm in triggered state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main header file for the TP\+\_\+\+ELEC project. 
+
+Contains declarations for RFID access control system functionality including user management, alarm control, and RFID reading capabilities. 
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{main_8h_a41c0ce4d75d0a79c5ad6fcb723054945}\label{main_8h_a41c0ce4d75d0a79c5ad6fcb723054945} 
+\index{main.h@{main.h}!ALARM\_STATE@{ALARM\_STATE}}
+\index{ALARM\_STATE@{ALARM\_STATE}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{ALARM\_STATE}{ALARM\_STATE}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{main_8h_a41c0ce4d75d0a79c5ad6fcb723054945}{ALARM\+\_\+\+STATE}}}
+
+
+
+Represents the possible states of the alarm system. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ON@{ON}!main.h@{main.h}}\index{main.h@{main.h}!ON@{ON}}}\Hypertarget{main_8h_a41c0ce4d75d0a79c5ad6fcb723054945a977d478dacaae531f95695750d1e9d03}\label{main_8h_a41c0ce4d75d0a79c5ad6fcb723054945a977d478dacaae531f95695750d1e9d03} 
+ON&Alarm system is turned off \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TRIGGERED@{TRIGGERED}!main.h@{main.h}}\index{main.h@{main.h}!TRIGGERED@{TRIGGERED}}}\Hypertarget{main_8h_a41c0ce4d75d0a79c5ad6fcb723054945ad3eea51f796ad468a4e1c61401e901b4}\label{main_8h_a41c0ce4d75d0a79c5ad6fcb723054945ad3eea51f796ad468a4e1c61401e901b4} 
+TRIGGERED&Alarm system is active but not triggered Alarm system has been triggered \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8h_a6f2ebe67487e347fab4a145eb56cf98c}\label{main_8h_a6f2ebe67487e347fab4a145eb56cf98c} 
+\index{main.h@{main.h}!addUser@{addUser}}
+\index{addUser@{addUser}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{addUser()}{addUser()}}
+{\footnotesize\ttfamily void add\+User (\begin{DoxyParamCaption}\item[{const String \&}]{username,  }\item[{const \mbox{\hyperlink{struct_n_u_i_d__s}{NUID}} \texorpdfstring{$\ast$}{*}}]{nuid }\end{DoxyParamCaption})}
+
+
+
+Add a new user to the system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & String containing the user\textquotesingle{}s name \\
+\hline
+{\em nuid} & Pointer to NUID structure containing the user\textquotesingle{}s RFID tag \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8h_acf40ae85016c0a6c3974d7bf122cd4f5}\label{main_8h_acf40ae85016c0a6c3974d7bf122cd4f5} 
+\index{main.h@{main.h}!deleteUser@{deleteUser}}
+\index{deleteUser@{deleteUser}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{deleteUser()}{deleteUser()}}
+{\footnotesize\ttfamily void delete\+User (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_user__s}{User}} \texorpdfstring{$\ast$}{*}}]{user }\end{DoxyParamCaption})}
+
+
+
+Remove a user from the system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & Pointer to the User to be deleted \\
+\hline
+\end{DoxyParams}
+\Hypertarget{main_8h_a482a752ced8379fe43c970138c3c17d9}\label{main_8h_a482a752ced8379fe43c970138c3c17d9} 
+\index{main.h@{main.h}!getUserByUID@{getUserByUID}}
+\index{getUserByUID@{getUserByUID}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{getUserByUID()}{getUserByUID()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_user__s}{User}} \texorpdfstring{$\ast$}{*} get\+User\+By\+UID (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_n_u_i_d__s}{NUID}} \texorpdfstring{$\ast$}{*}}]{nuid }\end{DoxyParamCaption})}
+
+
+
+Look up a user by their RFID tag identifier. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nuid} & Pointer to NUID structure containing the tag identifier \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the matching User, or NULL if no match found 
+\end{DoxyReturn}
+\Hypertarget{main_8h_a53c98615a40f75578a23d058f00e948d}\label{main_8h_a53c98615a40f75578a23d058f00e948d} 
+\index{main.h@{main.h}!read@{read}}
+\index{read@{read}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_n_u_i_d__s}{NUID}} \texorpdfstring{$\ast$}{*} read (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads an RFID tag and returns its NUID. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to NUID structure containing the read data, or NULL if no tag present 
+\end{DoxyReturn}
+\Hypertarget{main_8h_af900d67340544f38a0f51707bfddf4e4}\label{main_8h_af900d67340544f38a0f51707bfddf4e4} 
+\index{main.h@{main.h}!readSerial@{readSerial}}
+\index{readSerial@{readSerial}!main.h@{main.h}}
+\doxysubsubsection{\texorpdfstring{readSerial()}{readSerial()}}
+{\footnotesize\ttfamily void read\+Serial (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Process serial input commands. 
+
+Reads commands from the serial port and processes them 

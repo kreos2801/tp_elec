@@ -1,0 +1,117 @@
+\doxysection{lib/\+STM32\+RTC-\/1.7.0/src/\+STM32\+RTC.h File Reference}
+\hypertarget{_s_t_m32_r_t_c_8h}{}\label{_s_t_m32_r_t_c_8h}\index{lib/STM32RTC-\/1.7.0/src/STM32RTC.h@{lib/STM32RTC-\/1.7.0/src/STM32RTC.h}}
+
+
+Provides a RTC interface for Arduino.  
+
+
+{\ttfamily \#include "{}Arduino.\+h"{}}\newline
+{\ttfamily \#include "{}rtc.\+h"{}}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_s_t_m32_r_t_c}{STM32\+RTC}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_s_t_m32_r_t_c_8h_a9c2cb987b3f060b65b8977ade5db4380}{STM32\+\_\+\+RTC\+\_\+\+VERSION\+\_\+\+MAJOR}}~(0x01U)
+\begin{DoxyCompactList}\small\item\em STM32 RTC library version number. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_s_t_m32_r_t_c_8h_a825e759f3ec757fed9335cef0aa6bf69}{STM32\+\_\+\+RTC\+\_\+\+VERSION\+\_\+\+MINOR}}~(0x04U)
+\item 
+\#define \mbox{\hyperlink{_s_t_m32_r_t_c_8h_ad0d0c16d2b9e5ebda80a7db1fc81702e}{STM32\+\_\+\+RTC\+\_\+\+VERSION\+\_\+\+PATCH}}~(0x00U)
+\item 
+\#define \mbox{\hyperlink{_s_t_m32_r_t_c_8h_a549bc06f1210ab95202e967f1b228167}{STM32\+\_\+\+RTC\+\_\+\+VERSION\+\_\+\+EXTRA}}~(0x00U)
+\item 
+\#define \mbox{\hyperlink{_s_t_m32_r_t_c_8h_a244e8a3925bcbc15e64a411298d6f052}{STM32\+\_\+\+RTC\+\_\+\+VERSION}}
+\item 
+\#define \mbox{\hyperlink{_s_t_m32_r_t_c_8h_a537649fd05435362a099c5e03041bc5c}{IS\+\_\+\+CLOCK\+\_\+\+SOURCE}}(SRC)
+\item 
+\Hypertarget{_s_t_m32_r_t_c_8h_a8dc5ca0719037e37b2dab0b312967a9b}\label{_s_t_m32_r_t_c_8h_a8dc5ca0719037e37b2dab0b312967a9b} 
+\#define {\bfseries IS\+\_\+\+HOUR\+\_\+\+FORMAT}(FMT)~(((FMT) == STM32\+RTC\+::\+HOUR\+\_\+12) \texorpdfstring{$\vert$}{|}\texorpdfstring{$\vert$}{|} ((FMT) == STM32\+RTC\+::\+HOUR\+\_\+24))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_s_t_m32_r_t_c_8h_a9b588cfda2fdaa82cf47fd02603280cb}\label{_s_t_m32_r_t_c_8h_a9b588cfda2fdaa82cf47fd02603280cb} 
+typedef void(\texorpdfstring{$\ast$}{*} {\bfseries void\+Func\+Ptr}) (void \texorpdfstring{$\ast$}{*})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provides a RTC interface for Arduino. 
+
+\begin{DoxyAuthor}{Author}
+Frederic Pillon 
+\end{DoxyAuthor}
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+\doxysubsubsection*{\begin{center}\copyright{} COPYRIGHT(c) 2020 STMicroelectronics\end{center} }
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met\+:
+\begin{DoxyEnumerate}
+\item Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+\item Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+\item Neither the name of STMicroelectronics nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+\end{DoxyEnumerate}
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "{}\+AS IS"{} AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_s_t_m32_r_t_c_8h_a537649fd05435362a099c5e03041bc5c}\label{_s_t_m32_r_t_c_8h_a537649fd05435362a099c5e03041bc5c} 
+\index{STM32RTC.h@{STM32RTC.h}!IS\_CLOCK\_SOURCE@{IS\_CLOCK\_SOURCE}}
+\index{IS\_CLOCK\_SOURCE@{IS\_CLOCK\_SOURCE}!STM32RTC.h@{STM32RTC.h}}
+\doxysubsubsection{\texorpdfstring{IS\_CLOCK\_SOURCE}{IS\_CLOCK\_SOURCE}}
+{\footnotesize\ttfamily \#define IS\+\_\+\+CLOCK\+\_\+\+SOURCE(\begin{DoxyParamCaption}\item[{}]{SRC }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (((SRC)\ ==\ STM32RTC::LSI\_CLOCK)\ ||\ ((SRC)\ ==\ STM32RTC::LSE\_CLOCK)\ ||\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((SRC)\ ==\ STM32RTC::HSE\_CLOCK))}
+
+\end{DoxyCode}
+\Hypertarget{_s_t_m32_r_t_c_8h_a244e8a3925bcbc15e64a411298d6f052}\label{_s_t_m32_r_t_c_8h_a244e8a3925bcbc15e64a411298d6f052} 
+\index{STM32RTC.h@{STM32RTC.h}!STM32\_RTC\_VERSION@{STM32\_RTC\_VERSION}}
+\index{STM32\_RTC\_VERSION@{STM32\_RTC\_VERSION}!STM32RTC.h@{STM32RTC.h}}
+\doxysubsubsection{\texorpdfstring{STM32\_RTC\_VERSION}{STM32\_RTC\_VERSION}}
+{\footnotesize\ttfamily \#define STM32\+\_\+\+RTC\+\_\+\+VERSION}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((\mbox{\hyperlink{_s_t_m32_r_t_c_8h_a9c2cb987b3f060b65b8977ade5db4380}{STM32\_RTC\_VERSION\_MAJOR}}\ <<\ 24U)\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |(\mbox{\hyperlink{_s_t_m32_r_t_c_8h_a825e759f3ec757fed9335cef0aa6bf69}{STM32\_RTC\_VERSION\_MINOR}}\ <<\ 16U)\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |(\mbox{\hyperlink{_s_t_m32_r_t_c_8h_ad0d0c16d2b9e5ebda80a7db1fc81702e}{STM32\_RTC\_VERSION\_PATCH}}\ <<\ 8U\ )\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |(\mbox{\hyperlink{_s_t_m32_r_t_c_8h_a549bc06f1210ab95202e967f1b228167}{STM32\_RTC\_VERSION\_EXTRA}}))}
+
+\end{DoxyCode}
+\Hypertarget{_s_t_m32_r_t_c_8h_a549bc06f1210ab95202e967f1b228167}\label{_s_t_m32_r_t_c_8h_a549bc06f1210ab95202e967f1b228167} 
+\index{STM32RTC.h@{STM32RTC.h}!STM32\_RTC\_VERSION\_EXTRA@{STM32\_RTC\_VERSION\_EXTRA}}
+\index{STM32\_RTC\_VERSION\_EXTRA@{STM32\_RTC\_VERSION\_EXTRA}!STM32RTC.h@{STM32RTC.h}}
+\doxysubsubsection{\texorpdfstring{STM32\_RTC\_VERSION\_EXTRA}{STM32\_RTC\_VERSION\_EXTRA}}
+{\footnotesize\ttfamily \#define STM32\+\_\+\+RTC\+\_\+\+VERSION\+\_\+\+EXTRA~(0x00U)}
+
+\mbox{[}7\+:0\mbox{]} extra version \Hypertarget{_s_t_m32_r_t_c_8h_a9c2cb987b3f060b65b8977ade5db4380}\label{_s_t_m32_r_t_c_8h_a9c2cb987b3f060b65b8977ade5db4380} 
+\index{STM32RTC.h@{STM32RTC.h}!STM32\_RTC\_VERSION\_MAJOR@{STM32\_RTC\_VERSION\_MAJOR}}
+\index{STM32\_RTC\_VERSION\_MAJOR@{STM32\_RTC\_VERSION\_MAJOR}!STM32RTC.h@{STM32RTC.h}}
+\doxysubsubsection{\texorpdfstring{STM32\_RTC\_VERSION\_MAJOR}{STM32\_RTC\_VERSION\_MAJOR}}
+{\footnotesize\ttfamily \#define STM32\+\_\+\+RTC\+\_\+\+VERSION\+\_\+\+MAJOR~(0x01U)}
+
+
+
+STM32 RTC library version number. 
+
+\mbox{[}31\+:24\mbox{]} major version \Hypertarget{_s_t_m32_r_t_c_8h_a825e759f3ec757fed9335cef0aa6bf69}\label{_s_t_m32_r_t_c_8h_a825e759f3ec757fed9335cef0aa6bf69} 
+\index{STM32RTC.h@{STM32RTC.h}!STM32\_RTC\_VERSION\_MINOR@{STM32\_RTC\_VERSION\_MINOR}}
+\index{STM32\_RTC\_VERSION\_MINOR@{STM32\_RTC\_VERSION\_MINOR}!STM32RTC.h@{STM32RTC.h}}
+\doxysubsubsection{\texorpdfstring{STM32\_RTC\_VERSION\_MINOR}{STM32\_RTC\_VERSION\_MINOR}}
+{\footnotesize\ttfamily \#define STM32\+\_\+\+RTC\+\_\+\+VERSION\+\_\+\+MINOR~(0x04U)}
+
+\mbox{[}23\+:16\mbox{]} minor version \Hypertarget{_s_t_m32_r_t_c_8h_ad0d0c16d2b9e5ebda80a7db1fc81702e}\label{_s_t_m32_r_t_c_8h_ad0d0c16d2b9e5ebda80a7db1fc81702e} 
+\index{STM32RTC.h@{STM32RTC.h}!STM32\_RTC\_VERSION\_PATCH@{STM32\_RTC\_VERSION\_PATCH}}
+\index{STM32\_RTC\_VERSION\_PATCH@{STM32\_RTC\_VERSION\_PATCH}!STM32RTC.h@{STM32RTC.h}}
+\doxysubsubsection{\texorpdfstring{STM32\_RTC\_VERSION\_PATCH}{STM32\_RTC\_VERSION\_PATCH}}
+{\footnotesize\ttfamily \#define STM32\+\_\+\+RTC\+\_\+\+VERSION\+\_\+\+PATCH~(0x00U)}
+
+\mbox{[}15\+:8\mbox{]} patch version 

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['deleteuser_0',['deleteUser',['../sys3046_template_8c.html#acf40ae85016c0a6c3974d7bf122cd4f5',1,'sys3046Template.c']]],
-  ['deleteuserbyserial_1',['deleteUserBySerial',['../sys3046_template_8c.html#a7f1fa3d00dbec51637d9c0823ca79f83',1,'sys3046Template.c']]]
+  ['days_5faccess_0',['days_access',['../struct_user__s.html#a51f806b7d0b8970e8f634829d93842e8',1,'User_s']]],
+  ['deleteuser_1',['deleteUser',['../main_8h.html#acf40ae85016c0a6c3974d7bf122cd4f5',1,'main.h']]]
 ];
