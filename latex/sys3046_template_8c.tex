@@ -1,0 +1,135 @@
+\doxysection{src/sys3046\+Template.c File Reference}
+\hypertarget{sys3046_template_8c}{}\label{sys3046_template_8c}\index{src/sys3046Template.c@{src/sys3046Template.c}}
+
+
+my short description for \doxylink{sys3046_template_8c}{sys3046\+Template.\+c}  
+
+
+{\ttfamily \#include $<$SPI.\+h$>$}\newline
+{\ttfamily \#include $<$MFRC522.\+h$>$}\newline
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include $<$list$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include "{}../lib/\+STM32\+RTC-\/1.\+7.\+0/src/\+STM32\+RTC.\+h"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{sys3046_template_8c_a86fac98c9b4c98a3e50fc45440878391}\label{sys3046_template_8c_a86fac98c9b4c98a3e50fc45440878391} 
+\#define {\bfseries SS\+\_\+\+PIN}~10
+\begin{DoxyCompactList}\small\item\em Defines the pins for the RFID reader module. \end{DoxyCompactList}\item 
+\Hypertarget{sys3046_template_8c_a36932b0e869e0114f32e255f61306d6b}\label{sys3046_template_8c_a36932b0e869e0114f32e255f61306d6b} 
+\#define {\bfseries RST\+\_\+\+PIN}~9
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{sys3046_template_8c_ac672f817299d07cc428fe3f456235273}\label{sys3046_template_8c_ac672f817299d07cc428fe3f456235273} 
+MFRC522 {\bfseries mfrc522} (SS\+\_\+\+PIN, RST\+\_\+\+PIN)
+\item 
+\Hypertarget{sys3046_template_8c_a4fc01d736fe50cf5b977f755b675f11d}\label{sys3046_template_8c_a4fc01d736fe50cf5b977f755b675f11d} 
+void {\bfseries setup} ()
+\item 
+\Hypertarget{sys3046_template_8c_afe461d27b9c48d5921c00d521181f12f}\label{sys3046_template_8c_afe461d27b9c48d5921c00d521181f12f} 
+void {\bfseries loop} ()
+\item 
+\Hypertarget{sys3046_template_8c_aa43f68b6c12da400ebbda9664b030944}\label{sys3046_template_8c_aa43f68b6c12da400ebbda9664b030944} 
+void {\bfseries update\+Led} ()
+\item 
+\Hypertarget{sys3046_template_8c_a53c98615a40f75578a23d058f00e948d}\label{sys3046_template_8c_a53c98615a40f75578a23d058f00e948d} 
+NUID \texorpdfstring{$\ast$}{*} {\bfseries read} ()
+\item 
+\Hypertarget{sys3046_template_8c_a482a752ced8379fe43c970138c3c17d9}\label{sys3046_template_8c_a482a752ced8379fe43c970138c3c17d9} 
+User \texorpdfstring{$\ast$}{*} {\bfseries get\+User\+By\+UID} (const NUID \texorpdfstring{$\ast$}{*}nuid)
+\item 
+\Hypertarget{sys3046_template_8c_a0a6a5e3a4f3fd5cdd80894ab36df815d}\label{sys3046_template_8c_a0a6a5e3a4f3fd5cdd80894ab36df815d} 
+void {\bfseries add\+User\+By\+Serial} ()
+\begin{DoxyCompactList}\small\item\em Add new user through serial interface. \end{DoxyCompactList}\item 
+\Hypertarget{sys3046_template_8c_a6f2ebe67487e347fab4a145eb56cf98c}\label{sys3046_template_8c_a6f2ebe67487e347fab4a145eb56cf98c} 
+void {\bfseries add\+User} (const String \&username, const NUID \texorpdfstring{$\ast$}{*}nuid)
+\begin{DoxyCompactList}\small\item\em Add user with given name and RFID tag. \end{DoxyCompactList}\item 
+\Hypertarget{sys3046_template_8c_a7f1fa3d00dbec51637d9c0823ca79f83}\label{sys3046_template_8c_a7f1fa3d00dbec51637d9c0823ca79f83} 
+void {\bfseries delete\+User\+By\+Serial} ()
+\begin{DoxyCompactList}\small\item\em Delete user by scanning their RFID card. \end{DoxyCompactList}\item 
+\Hypertarget{sys3046_template_8c_acf40ae85016c0a6c3974d7bf122cd4f5}\label{sys3046_template_8c_acf40ae85016c0a6c3974d7bf122cd4f5} 
+void {\bfseries delete\+User} (User \texorpdfstring{$\ast$}{*}user)
+\begin{DoxyCompactList}\small\item\em Remove user from system. \end{DoxyCompactList}\item 
+\Hypertarget{sys3046_template_8c_aa155fdc926b45ca3c91ebec313e5acf9}\label{sys3046_template_8c_aa155fdc926b45ca3c91ebec313e5acf9} 
+void {\bfseries set\+Date} ()
+\item 
+\Hypertarget{sys3046_template_8c_af900d67340544f38a0f51707bfddf4e4}\label{sys3046_template_8c_af900d67340544f38a0f51707bfddf4e4} 
+void {\bfseries read\+Serial} ()
+\item 
+\Hypertarget{sys3046_template_8c_a61e706bcf586a124495d82a2fe6929de}\label{sys3046_template_8c_a61e706bcf586a124495d82a2fe6929de} 
+void {\bfseries print\+Users} ()
+\item 
+\Hypertarget{sys3046_template_8c_a447bfdf3be9bb1f0cf8a3d34b87b3bd6}\label{sys3046_template_8c_a447bfdf3be9bb1f0cf8a3d34b87b3bd6} 
+void {\bfseries set\+Alarm\+On} ()
+\item 
+\Hypertarget{sys3046_template_8c_a88749dbdae701f1327f3b0a5880ee993}\label{sys3046_template_8c_a88749dbdae701f1327f3b0a5880ee993} 
+void {\bfseries trigger\+Alarm} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{sys3046_template_8c_af480f778eb0b114a392b9056e13a8d38}\label{sys3046_template_8c_af480f778eb0b114a392b9056e13a8d38} 
+std\+::list$<$ User $>$ {\bfseries users}
+\begin{DoxyCompactList}\small\item\em List to store all registered users. \end{DoxyCompactList}\item 
+\Hypertarget{sys3046_template_8c_a5a7b53ff4741552a306595fc1b2cc63d}\label{sys3046_template_8c_a5a7b53ff4741552a306595fc1b2cc63d} 
+ALARM\+\_\+\+STATE {\bfseries alarm\+State} = OFF
+\begin{DoxyCompactList}\small\item\em Current state of the alarm system. \end{DoxyCompactList}\item 
+\Hypertarget{sys3046_template_8c_a52e587f5bb4b631db7f702e1da584481}\label{sys3046_template_8c_a52e587f5bb4b631db7f702e1da584481} 
+constexpr int {\bfseries alarm\+\_\+led\+\_\+pin} = D5
+\begin{DoxyCompactList}\small\item\em Pin definitions and global variables. \end{DoxyCompactList}\item 
+\Hypertarget{sys3046_template_8c_a4488e7fa8eeff7c45a7e25e1a479d8cf}\label{sys3046_template_8c_a4488e7fa8eeff7c45a7e25e1a479d8cf} 
+unsigned long {\bfseries RFIDTime\+Memory} = 0
+\item 
+\Hypertarget{sys3046_template_8c_a82bb79790f0f13251681ce50e5f8f487}\label{sys3046_template_8c_a82bb79790f0f13251681ce50e5f8f487} 
+constexpr int {\bfseries on\+\_\+pin} = A0
+\item 
+\Hypertarget{sys3046_template_8c_aa8cb8c023a436dfe7ab4b75637a740f9}\label{sys3046_template_8c_aa8cb8c023a436dfe7ab4b75637a740f9} 
+constexpr int {\bfseries alarm\+\_\+pin} = D4
+\item 
+\Hypertarget{sys3046_template_8c_a0765726fe0f07e877391a1235e105703}\label{sys3046_template_8c_a0765726fe0f07e877391a1235e105703} 
+bool {\bfseries pin\+State} = false
+\item 
+\Hypertarget{sys3046_template_8c_aadd01aee2f1b6c7d047b05d6142d5122}\label{sys3046_template_8c_aadd01aee2f1b6c7d047b05d6142d5122} 
+STM32\+RTC \& {\bfseries rtc} = STM32\+RTC\+::get\+Instance()
+\begin{DoxyCompactList}\small\item\em Real-\/time clock instance. \end{DoxyCompactList}\item 
+\Hypertarget{sys3046_template_8c_ad4aadbf240d357f2bf99c85ed6fe7662}\label{sys3046_template_8c_ad4aadbf240d357f2bf99c85ed6fe7662} 
+const byte {\bfseries seconds} = 0
+\begin{DoxyCompactList}\small\item\em Default time and date settings. \end{DoxyCompactList}\item 
+\Hypertarget{sys3046_template_8c_abb1e34d12c0cdff5ba4517490308a48d}\label{sys3046_template_8c_abb1e34d12c0cdff5ba4517490308a48d} 
+const byte {\bfseries minutes} = 0
+\item 
+\Hypertarget{sys3046_template_8c_a73a1af017abdc92302c2d1b7beae5d09}\label{sys3046_template_8c_a73a1af017abdc92302c2d1b7beae5d09} 
+const byte {\bfseries hours} = 16
+\item 
+\Hypertarget{sys3046_template_8c_a8f3d9957231923cba6ab20aff2c3d1a9}\label{sys3046_template_8c_a8f3d9957231923cba6ab20aff2c3d1a9} 
+const byte {\bfseries week\+Day} = 1
+\item 
+\Hypertarget{sys3046_template_8c_ae32af3283e8bc94f56d387a0ba5082ba}\label{sys3046_template_8c_ae32af3283e8bc94f56d387a0ba5082ba} 
+const byte {\bfseries day} = 15
+\item 
+\Hypertarget{sys3046_template_8c_a9ce9be5b22ce12d7297f8b9290adb13e}\label{sys3046_template_8c_a9ce9be5b22ce12d7297f8b9290adb13e} 
+const byte {\bfseries month} = 6
+\item 
+\Hypertarget{sys3046_template_8c_a087b7ba6d485fe7d93b44fdf30f039e0}\label{sys3046_template_8c_a087b7ba6d485fe7d93b44fdf30f039e0} 
+const byte {\bfseries year} = 15
+\item 
+\Hypertarget{sys3046_template_8c_ad289b5478d22cfe78f168af59adb3f99}\label{sys3046_template_8c_ad289b5478d22cfe78f168af59adb3f99} 
+unsigned long {\bfseries alarm\+Memory} = millis()
+\begin{DoxyCompactList}\small\item\em Timer for alarm duration. \end{DoxyCompactList}\item 
+\Hypertarget{sys3046_template_8c_a627bbd902e7d65e4a7fbc7e62c717fa6}\label{sys3046_template_8c_a627bbd902e7d65e4a7fbc7e62c717fa6} 
+unsigned long {\bfseries led\+Time\+Memory} = 0
+\begin{DoxyCompactList}\small\item\em Variables for LED state management. \end{DoxyCompactList}\item 
+\Hypertarget{sys3046_template_8c_aa0ccb5ee6d882ee3605ff47745c6467b}\label{sys3046_template_8c_aa0ccb5ee6d882ee3605ff47745c6467b} 
+int {\bfseries val} = 0
+\item 
+\Hypertarget{sys3046_template_8c_aafae8eb6fa934903f5e0afc42e858d64}\label{sys3046_template_8c_aafae8eb6fa934903f5e0afc42e858d64} 
+bool {\bfseries ast} = true
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+my short description for \doxylink{sys3046_template_8c}{sys3046\+Template.\+c} 
+
